@@ -6,3 +6,4 @@ nn:
 
 clean:
 	rm -f nn data_generator
+	rm -f *.txt
