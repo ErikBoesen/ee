@@ -46,7 +46,7 @@ int main() {
 		assert(targets.size() == topology.back());
 		cout << " (targets ";
 		print_vector(targets);
-		cout << "). ";
+		cout << ")." << endl;
 
 		// Backpropogate!
 		network.backpropogate(targets);
