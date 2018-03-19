@@ -49,8 +49,5 @@ int main() {
 
 		// Backpropogate!
 		network.backpropogate(targets);
-
-		// Report how training is going.
-		cout << "Recent error: " << network.get_recent_average_error() << endl;
 	}
 }
