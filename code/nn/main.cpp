@@ -32,23 +32,24 @@ int main() {
 		// Get new input data and feed it forward:
 		if (reader.get_inputs(inputs) != topology[0]) break;
 
-		cout << "P" << pass << " / ";
-		print_vector(inputs);
 		network.feed_forward(inputs);
 
 		// Collect the net's actual results:
 		network.get_results(results);
-		cout << " > ";
-		print_vector(results);
 
 		// Show correct outputs
 		reader.get_outputs(targets);
 		assert(targets.size() == topology.back());
-		cout << " (targets ";
-		print_vector(targets);
-		cout << ")." << endl;
 
 		// Backpropogate!
 		network.backpropogate(targets);
+
+		cout << "P" << pass << " / ";
+		print_vector(inputs);
+		cout << " > ";
+		print_vector(results);
+		cout << " (targets ";
+		print_vector(targets);
+		cout << ")." << endl;
 	}
 }
