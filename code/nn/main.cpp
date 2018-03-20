@@ -1,5 +1,6 @@
-#include <vector>
 #include <iostream>
+#include <iomanip>
+#include <vector>
 #include <cassert>
 #include "net.h"
 #include "reader.h"
@@ -28,6 +29,8 @@ int main() {
 
 	vector<double> inputs, targets, results;
 
+	cout << fixed << setprecision(0);
+
 	for (int pass = 0; !reader.isEof(); ++pass) {
 		// Get new input data and feed it forward:
 		if (reader.get_inputs(inputs) != topology[0]) break;
@@ -47,7 +50,9 @@ int main() {
 		cout << "P" << pass << " / ";
 		print_vector(inputs);
 		cout << " > ";
+		cout << setprecision(4);
 		print_vector(results);
+		cout << setprecision(0);
 		cout << " (targets ";
 		print_vector(targets);
 		cout << ")." << endl;
