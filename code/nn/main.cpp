@@ -20,9 +20,7 @@ int main() {
 	Reader reader("training_data.txt");
 	vector<int> topology;
 	topology.push_back(2);
-	topology.push_back(4);
 	topology.push_back(5);
-	topology.push_back(4);
 	topology.push_back(3);
 
 	Net network(topology);
