@@ -40,7 +40,7 @@ int main() {
 
 	cout << fixed << setprecision(0);
 
-	for (int pass = 0; !reader.isEof(); ++pass) {
+	for (int epoch = 0; !reader.isEof(); ++epoch) {
 		// Get new input data and feed it forward:
 		if (reader.get_inputs(inputs) != topology[0]) break;
 
@@ -56,7 +56,7 @@ int main() {
 		// Backpropogate!
 		network.backpropogate(targets);
 
-		cout << "P" << pass << " / ";
+		cout << "E" << epoch << " / ";
 		print_vector(inputs);
 		cout << " > ";
 		cout << setprecision(4);
