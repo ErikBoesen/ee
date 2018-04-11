@@ -16,6 +16,17 @@ void print_vector(vector<double> &v) {
 	cout << ']';
 }
 
+void print_error(vector<double> &a, vector<double> &b) {
+	cout << '[';
+	cout << setprecision(4);
+	for (int i = 0; i < a.size(); ++i) {
+		cout << b[i] - a[i];
+		if (i != a.size() - 1) cout << " ";
+	}
+	cout << setprecision(0);
+	cout << ']';
+}
+
 int main() {
 	Reader reader("training_data.txt");
 	vector<int> topology;
@@ -53,6 +64,8 @@ int main() {
 		cout << setprecision(0);
 		cout << " (targets ";
 		print_vector(targets);
-		cout << ")." << endl;
+		cout << "), (error ";
+		print_error(results, targets);
+		cout << ")" << endl;
 	}
 }
