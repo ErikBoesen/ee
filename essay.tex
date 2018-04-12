@@ -10,7 +10,10 @@
 \addtolength{\topmargin}{-.875in}
 \addtolength{\textheight}{1.75in}
 
+\bibliographystyle{plain}
+
 \begin{document}
+
 \title{Neural Networks}
 \author{Erik Boesen}
 
@@ -25,27 +28,21 @@ This is where the introduction goes.
 
 \section{A general overview of neural networks}
 \subsection{Why use Neural Networks?}
-% TODO: Review "categorized" word choice, check on how K Nearest Neighbors works
-Neural Networks (NNs) are a common technique used in Machine Learning (ML). ML techniques are useful when a large and diverse set of data must be processed and categorized, but when writing explicit code to make distinctions between data points would be impractical. For example, when identifying objects in an image, it would be nearly impossible to write a procedure to directly read image data and distinguish between many images. Furthermore, simpler ML techniques such as the K Nearest Neighbors algorithm may have trouble making decisions in so many dimensions with such a complex output vector.
+Neural Networks (NNs) are a common technique used in Machine Learning (ML). ML techniques are useful when a large and diverse set of data must be processed (often entailing categorization), but when writing explicit code to make distinctions between data points would be impractical. For example, when identifying objects in an image, as in \cite{hinton12}, it would be nearly impossible to write a procedure to directly read image data and distinguish between many images. Though some simpler ML techniques such as the K Nearest Neighbors algorithm have been used, for example in \cite{knnic}, these strategies have trouble making decisions in so many dimensions with such a complex output vector.
 
 \subsection{Structure}
 % TODO: This explanation is insufficient.
 Neural Networks make tasks like the aforementioned easier by taking cues from neurobiology and simulating how a real brain makes decisions. Virtual neurons are chained together, which on their own only read the output values of each neuron in  Each network contains three types of layers:
 \begin{itemize}
-\item{Input Layers} - A vector of input values. Input data is fed through one or more "hidden layers," which multiply values by various weights (represented by \ howdoImakethewsign) in order to arrive at a final "output layer," which contains 
+\item{Input Layers} - A vector of input values. Input data is fed through one or more "hidden layers," which multiply values by various weights (notated $\omega_n$) in order to arrive at a final "output layer," which contains the data desired by a user.
 \end{itemize}
 
 \subsection{Backpropogation}
-A central component of neural network training is the backpropogation algorithm. In this 
+A central component of neural network training is the backpropogation algorithm. In this
 
 \section{Language selection}
 We chose for this research to use C++ for implementation of our deep Neural Network.
 
-\begin{thebibliography}
-
-\bibitem{hinton12}
-	A. Krizhevsky, I. Sutskever, and G. E. Hinton, ?ImageNet classification with deep convolutional neural networks,? \textit{Communications of the ACM}, vol. 60, no. 6, pp. 84?90, 2017.
-
-\end{thebibliography}
+\bibliography{research}
 
 \end{document}
