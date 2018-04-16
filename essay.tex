@@ -28,55 +28,13 @@ This is where the introduction goes.
 
 \section{A general overview of neural networks}
 \subsection{Why use Neural Networks?}
-Neural Networks (NNs) are a common technique used in Machine Learning (ML). ML techniques are useful when a large and diverse set of data must be processed (often entailing categorization), but when writing explicit code to make distinctions between data points would be impractical. For example, when identifying objects in an image, as in \cite{hinton12}, it would be nearly impossible to write a procedure to directly read image data and distinguish between many images. Though some simpler ML techniques such as the K Nearest Neighbors algorithm have been used, for example in \cite{knnic}, these strategies have trouble making decisions in so many dimensions with such a complex output vector.
+Neural Networks (NNs) are a common technique used in Machine Learning (ML). ML techniques are useful when a large and diverse set of data must be processed (often entailing categorization), but when writing explicit code to make distinctions between data points would be impractical. For example, when identifying objects in an image, as in \cite{hinton12}, it would be nearly impossible to write a procedure to directly read image data and distinguish between many images. Though there exist simpler ML techniques, such as the K Nearest Neighbors algorithm, these strategies have trouble making decisions in so many dimensions with such a complex output vector as demonstrated in \cite{knnic}.
 
 \subsection{Structure}
 % TODO: This explanation is insufficient.
-Neural Networks make tasks like the aforementioned easier by taking cues from neurobiology and simulating how a real brain makes decisions. Virtual neurons are chained together, which on their own only read the output values of each neuron in  Each network contains three types of layers:
-\begin{itemize}
-\item{Input Layers} - A vector of input values. Input data is fed through one or more "hidden layers," which multiply values by various weights (notated $\omega_n$) in order to arrive at a final "output layer," which contains the data desired by a user.
-\end{itemize}
+Neural Networks make tasks like the aforementioned easier by taking cues from neurobiology and simulating how a real brain makes decisions. Virtual neurons are chained together in layers.
 
-\begin{tikzpicture}[
-plain/.style={
-  draw=none,
-  fill=none,
-  },
-net/.style={
-  matrix of nodes,
-  nodes={
-    draw,
-    circle,
-    inner sep=10pt
-    },
-  nodes in empty cells,
-  column sep=2cm,
-  row sep=-9pt
-  },
->=latex
-]
-\matrix[net] (mat)
-{
-|[plain]| \parbox{1.3cm}{\centering Input\\layer} & |[plain]| \parbox{1.3cm}{\centering Hidden\\layer} & |[plain]| \parbox{1.3cm}{\centering Output\\layer} \\
-& |[plain]| \\
-|[plain]| & \\
-& |[plain]| \\
-  |[plain]| & |[plain]| \\
-& & \\
-  |[plain]| & |[plain]| \\
-& |[plain]| \\
-  |[plain]| & \\
-& |[plain]| \\    };
-\foreach \ai [count=\mi ]in {2,4,...,10}
-  \draw[<-] (mat-\ai-1) -- node[above] {Input \mi} +(-2cm,0);
-\foreach \ai in {2,4,...,10}
-{\foreach \aii in {3,6,9}
-  \draw[->] (mat-\ai-1) -- (mat-\aii-2);
-}
-\foreach \ai in {3,6,9}
-  \draw[->] (mat-\ai-2) -- (mat-6-3);
-\draw[->] (mat-6-3) -- node[above] {Ouput} +(2cm,0);
-\end{tikzpicture}
+Each neuron, on its own, simply sums the output values of each neuron in the previous layer (and, typically, passes the result through the sigmoid scaling function to bring the output into the range $(0, 1)$ or $(-1, 1)$).
 
 \begin{tikzpicture}[
 init/.style={
@@ -123,6 +81,54 @@ start chain=2,node distance=13mm
 \draw[o-latex] (b) -- (sigma);
 
 \draw[decorate,decoration={brace,mirror}] (x1.north west) -- node[left=10pt] {Inputs} (x3.south west);
+\end{tikzpicture}
+
+Each network contains three types of layers:
+\begin{itemize}
+\item{Input Layer - A vector of input values.}
+\item{Hidden Layers - Input data is fed through one or more of these, which multiply values by various weights (notated $\omega_n$) in order to arrive at a final "output layer," which contains the data desired by a user.}
+\item{Output Layer - A vector of output values.}
+\end{itemize}
+
+\begin{tikzpicture}[
+plain/.style={
+  draw=none,
+  fill=none,
+  },
+net/.style={
+  matrix of nodes,
+  nodes={
+    draw,
+    circle,
+    inner sep=10pt
+    },
+  nodes in empty cells,
+  column sep=2cm,
+  row sep=-9pt
+  },
+>=latex
+]
+\matrix[net] (mat)
+{
+|[plain]| \parbox{1.3cm}{\centering Input\\layer} & |[plain]| \parbox{1.3cm}{\centering Hidden\\layer} & |[plain]| \parbox{1.3cm}{\centering Output\\layer} \\
+& |[plain]| \\
+|[plain]| & \\
+& |[plain]| \\
+  |[plain]| & |[plain]| \\
+& & \\
+  |[plain]| & |[plain]| \\
+& |[plain]| \\
+  |[plain]| & \\
+& |[plain]| \\    };
+\foreach \ai [count=\mi ]in {2,4,...,10}
+  \draw[<-] (mat-\ai-1) -- node[above] {Input \mi} +(-2cm,0);
+\foreach \ai in {2,4,...,10}
+{\foreach \aii in {3,6,9}
+  \draw[->] (mat-\ai-1) -- (mat-\aii-2);
+}
+\foreach \ai in {3,6,9}
+  \draw[->] (mat-\ai-2) -- (mat-6-3);
+\draw[->] (mat-6-3) -- node[above] {Ouput} +(2cm,0);
 \end{tikzpicture}
 
 \subsection{Backpropogation}
