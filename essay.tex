@@ -34,8 +34,9 @@ Neural Networks (NNs) are a common technique used in Machine Learning (ML). ML t
 % TODO: This explanation is insufficient.
 Neural Networks make tasks like the aforementioned easier by taking cues from neurobiology and simulating how a real brain makes decisions. Virtual neurons are chained together in layers.
 
-Each neuron, on its own, simply sums the output values of each neuron in the previous layer (and, typically, passes the result through the sigmoid scaling function to bring the output into the range $(0, 1)$ or $(-1, 1)$).
+The process performed by each neuron during training is relatively simple. First, the neuron sums the output values of all previous neurons, including the bias neuron, multiplied by their weights. It then passes the result through an activation function, such as the sigmoid function, to bring the output into the range $(0, 1)$ (or, for activation functions like $tanh(x)$, $(-1, 1)$).
 
+\begin{figure}
 \begin{tikzpicture}[
 init/.style={
   draw,
@@ -82,6 +83,8 @@ start chain=2,node distance=13mm
 
 \draw[decorate,decoration={brace,mirror}] (x1.north west) -- node[left=10pt] {Inputs} (x3.south west);
 \end{tikzpicture}
+\caption{A diagram of a single neuron.} \label{fig:M1}
+\end{figure}
 
 Each network contains three types of layers:
 \begin{itemize}
