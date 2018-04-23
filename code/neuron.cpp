@@ -9,8 +9,7 @@ using namespace std;
 
 
 void Neuron::update_input_weights(Layer &previous_layer) {
-	// The weights to be updated are in the Connection container
-	// in the nuerons in the preceding layer
+	// The weights to be updated are in the Synapse container in the neurons in the preceding layer
 
 	for (int n = 0; n < previous_layer.size(); ++n) {
 		Neuron &neuron = previous_layer[n];
@@ -71,9 +70,9 @@ void Neuron::feed_forward(const Layer &previous_layer) {
 
 Neuron::Neuron(int num_outputs, int index) {
 	for (int c = 0; c < num_outputs; ++c){
-		Connection connection;
-		connection.weight = 1.0/2.0;
-		this->output_weights.push_back(connection);
+		Synapse synapse;
+		synapse.weight = 1.0/2.0;
+		this->output_weights.push_back(synapse);
 	}
 
 	this->index = index;

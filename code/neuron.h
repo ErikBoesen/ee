@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "connection.h"
+#include "synapse.h"
 
 using namespace std;
 
@@ -22,7 +22,7 @@ private:
 	static double activation_derivative(double x);
 	double sum_dow(const Layer &next_layer) const;
 	double output;
-	vector<Connection> output_weights;
+	vector<Synapse> output_weights;
 	int index;
 	double gradient;
 };

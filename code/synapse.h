@@ -1,6 +1,6 @@
 #pragma once
 
-struct Connection {
+struct Synapse {
 	double weight;
 	double delta_weight;
 };

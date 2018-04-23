@@ -35,7 +35,7 @@ void Net::backpropogate(const std::vector<double> &targets) {
 		for (int n = 0; n < this->layers[layer_num].size(); ++n)
 			this->layers[layer_num][n].calculate_hidden_gradients(this->layers[layer_num + 1]);
 	}
-	// Update connection weights for all layers except input
+	// Update synapse weights for all layers except input
 	// TODO: Make sure this is what it's doing
 	for (int layer_num = this->layers.size() - 1; layer_num > 0; --layer_num) {
 		for (int n = 0; n < this->layers[layer_num].size() - 1; ++n)
