@@ -2,6 +2,7 @@
 
 \usepackage{tikz}
 \usetikzlibrary{matrix,chains,positioning,decorations.pathreplacing,arrows}
+\usepackage{minted}
 
 \addtolength{\oddsidemargin}{-.875in}
 \addtolength{\evensidemargin}{-.875in}
@@ -137,8 +138,16 @@ net/.style={
 \subsection{Backpropogation}
 A central component of neural network training is the backpropogation algorithm. In this
 
-\section{Language selection}
-We chose for this research to use C++ for implementation of our deep Neural Network.
+\section{Technical stack}
+For implementing our network we use C++. However, given that the general logic of the network could be implemented in practically any language, we strove to use the most simplistic implementation possible; avoiding excessive use of C++-specific idioms. Any opaque logic is explained. Syntax highlighting is provided as well for ease of use:
+\begin{minted}{c++}
+#include <iostream>
+
+using namespace std;
+int main(int argc, char *argv[]) {
+    cout << "Hello world!" << endl;
+}
+\end{minted}
 
 \bibliography{research}
 
