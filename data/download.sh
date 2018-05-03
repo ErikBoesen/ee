@@ -26,5 +26,7 @@ for ((i=0; i<${#langs[@]}; ++i)); do
         # Download and decompress database file
         curl -o ${langs[i]}.xml.bz2 https://dumps.wikimedia.org/${langs[i]}wiki/$date/${langs[i]}wiki-$date-pages-${files[i]}
         bzip2 -d ${langs[i]}.xml.bz2
+    else
+        echo ${langs[i]} already downloaded.
     fi
 done
