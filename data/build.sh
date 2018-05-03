@@ -14,7 +14,7 @@ files=(
 date=20180420
 
 for ((i=0; i<${#langs[@]}; ++i)); do
-    if [[ -f ${langs[i]}.xml ]] && [[ -f ${langs[i]}.xml.bz2 ]]; then
+    if [[ ! -e ${langs[i]}.xml ]] && [[ ! -e ${langs[i]}.xml.bz2 ]]; then
         echo ${langs[i]}...
         curl -o ${langs[i]}.xml.bz2 https://dumps.wikimedia.org/${langs[i]}wiki/$date/${langs[i]}wiki-$date-pages-${files[i]}
         bzip2 -d ${langs[i]}.xml.bz2
