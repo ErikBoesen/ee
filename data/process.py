@@ -1,8 +1,15 @@
 import xml.etree.ElementTree as etree
 import mwparserfromhell
+import re
+
+STRIP_RE = re.compile(r"""^[\|!].*$|^Category:""", re.MULTILINE)
+WS_RE = re.compile('[\n\t ]+')
 
 def strip(text: str) -> str:
-    return mwparserfromhell.parse(text).strip_code()
+    res = mwparserfromhell.parse(text).strip_code()
+    res = STRIP_RE.sub('', res)
+    res = WS_RE.sub(' ', res)
+    return res
 
 print('Loading')
 tree = etree.parse('en.xml')
