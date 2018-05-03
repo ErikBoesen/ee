@@ -35,7 +35,10 @@ In this research we seek to develop and implement (using C++) a neural network w
 To train our network, we use dumps of article contents in the selected languages from the Wikimedia Foundation, obtained from \cite{wikidumps} as recommended in \cite{langsamp}. % Remove second citation?
 
 For each language, data was retrieved from the 2018-04-20 dump, using the format "Articles, templates, media/file descriptions, and primary meta-pages." These dump files are retrievable at \url{https://dumps.wikimedia.org/enwiki/20180420/enwiki-20180420-pages-articles.xml.bz2} (English, with the same URL format used for other languages). The following languages have Wikimedia databases too large to be practically handled, thus, we use only a single part of the database, whose URLs are inconsistent. We use a simple bash script to download and extract all data:
-\inputminted{bash}{data/build.sh}
+\inputminted{bash}{data/download.sh}
+
+We then use a simple Python program \texttt{process.py} to extract article text from the raw XML files and parse it to remove markup characters \cite{parsewikixml}:
+\inputminted{python}{data/process.py}
 
 \section{A general overview of neural networks}
 \subsection{Why use Neural Networks?}
