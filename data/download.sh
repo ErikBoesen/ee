@@ -22,9 +22,10 @@ date=20180420
 for ((i=0; i<${#langs[@]}; ++i)); do
     # Only download database if files don't already exist
     if [[ ! -e ${langs[i]}.xml ]] && [[ ! -e ${langs[i]}.xml.bz2 ]]; then
-        echo ${langs[i]}...
+        echo "Downloading ${langs[i]}..."
         # Download and decompress database file
         curl -o ${langs[i]}.xml.bz2 https://dumps.wikimedia.org/${langs[i]}wiki/$date/${langs[i]}wiki-$date-pages-${files[i]}
+        echo "Decompressing ${langs[i]}..."
         bzip2 -d ${langs[i]}.xml.bz2
     else
         echo ${langs[i]} already downloaded.
