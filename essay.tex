@@ -61,7 +61,7 @@ Neural Networks make tasks like the aforementioned easier by taking cues from ne
 
 \subsubsection{A neuron}
 The process performed by each neuron during training is relatively simple. First, the neuron sums the output values of all previous neurons, including the bias neuron, multiplied by their weights. It then passes the result through an activation function, which brings the output into a regular range such as $(0, 1)$ or $(-1, 1)$. There exist many different activation functions, however, in this investigation we use the common $\sigma$ ("sigmoid") function:
-$$\sigma=\frac{1}{1+e^{-x}}$$
+$$\sigma(x)=\frac{1}{1+e^{-x}}$$
 
 \begin{figure}
 \begin{tikzpicture}[
