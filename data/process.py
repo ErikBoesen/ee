@@ -8,7 +8,7 @@ WS_RE = re.compile('[\n\t ]+')
 LANGS = ['zh', 'es', 'en', 'ar', 'hi', 'bn', 'ru']
 
 def strip(text: str) -> str:
-    res = mwparserfromhell.parse(text).strip_code()
+    res = mwparser.parse(text).strip_code()
     res = STRIP_RE.sub('', res)
     res = WS_RE.sub(' ', res)
     return res
@@ -20,7 +20,7 @@ for l in LANGS:
     root = tree.getroot()
 
     with open('%s.txt' % l, 'w+') as of:
-        for ind, child in enumerate(root):
+        for ind, child in enumerate(root[1:]):
             if child.tag == '{http://www.mediawiki.org/xml/export-0.10/}page' and child[3].tag == '{http://www.mediawiki.org/xml/export-0.10/}revision':
                 print('Title:', child[0].text)
                 of.write(strip(child[3][7].text))
