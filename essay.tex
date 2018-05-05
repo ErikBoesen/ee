@@ -50,19 +50,21 @@ For each language, data was retrieved from the 2018-04-20 dump, using the format
 We then use a Python program \texttt{process.py} to extract article text from the raw XML files and parse it to remove markup characters \cite{parsewikixml}:
 \inputminted{python}{data/process.py}
 
-\section{A general overview of neural networks}
-\subsection{Why use a Neural Network?}
+\subsection{A general overview of neural networks}
+\subsubsection{Why use a Neural Network?}
 Neural Networks are a common technique used in the burgeoning field of machine learning. Machine learning techniques are useful when a large and diverse set of data must be processed (often entailing categorization), but when writing explicit code to make distinctions between data points would be impractical. For example, when identifying objects in an image, as in \cite{hinton12}, it would be nearly impossible to write a procedure to directly read image data and distinguish between many images. Though there exist simpler machine learning techniques, such as the K Nearest Neighbors algorithm, these strategies have trouble making decisions in so many dimensions with such a complex output vector as demonstrated in \cite{knnic}. Though the concept of a neural network has existed since the 1980s [citation needed], they have recently had a resurgence of popularity. Machine learning techniques based on neural networks including deep learning [citation needed] and recurrent neural networks [citation needed] have recently been applied to diverse problems, including achieving victory over a human in the age-old game of Go [citation needed], differentiating between multiple thouands of different image classes \cite{hinton12}, and even recognizing voices [citation needed].
 
-\subsection{Structure}
+\subsubsection{Structure}
 Neural Networks make tasks like the aforementioned easier by taking cues from neurobiology and simulating how a real brain makes decisions. In the brains of humans and other animals, many neurons are joined together. These neurons themselves simply take electrical input, adjust it, and pass it along to the next neuron. Biological brains readjust the behavior of their individual constituent neurons, and in doing so are able to perform the process of learning.
 
 Though this is a gross oversimplification of the actual biological processes of learning and neuroplasticity, it may be a helpful metaphor to understand the function of an artificial neural network: the technique is remarkably similar, as you will see.
 
-\subsubsection{A neuron}
-The process performed by each neuron during training is relatively simple and is thus easier to think about independently. First, the neuron sums the output values of all previous neurons, including the bias neuron, multiplied by their weights. It then passes the result through an activation function, which brings the output into a regular range such as $(0, 1)$ or $(-1, 1)$. There exist many different activation functions, however, in this investigation we use the common $\sigma$ ("sigmoid") function:
+The process performed by each neuron during training is relatively simple and is thus easier to think about independently. First, the neuron sums the output values of all previous neurons, including the bias neuron, multiplied by their weights. It then passes the result through an activation function, which brings the output into a regular range such as $(0, 1)$ or $(-1, 1)$. There exist many different activation functions, however, in this investigation we use the common $\sigma$ ("sigmoid") function, which limits our neuron's output to $(0, 1)$:
 $$\sigma(x)=\frac{1}{1+e^{-x}}$$
 
+A simple neuron, therefore, might be visualized like so:
+
+\begin{center}
 \begin{tikzpicture}[
 init/.style={
   draw,
@@ -86,7 +88,7 @@ start chain=2,node distance=13mm
 \node[on chain=2,init] (sigma)
   {$\displaystyle\Sigma$};
 \node[on chain=2,squa,label=above:{\parbox{2cm}{\centering Activation \\ function}}]
-  {$f$};
+  {$\sigma$};
 \node[on chain=2,label=above:Output,join=by -latex]
   {$y$};
 \begin{scope}[start chain=1]
@@ -109,6 +111,7 @@ start chain=2,node distance=13mm
 
 \draw[decorate,decoration={brace,mirror}] (x1.north west) -- node[left=10pt] {Inputs} (x3.south west);
 \end{tikzpicture}
+\end{center}
 
 Each neural network contains three types of layers, or vectors of neurons:
 \begin{itemize}
@@ -117,6 +120,7 @@ Each neural network contains three types of layers, or vectors of neurons:
 \item{Output Layer - A vector of output values.}
 \end{itemize}
 
+\begin{center}
 \begin{tikzpicture}[
 plain/.style={
   draw=none,
@@ -157,6 +161,7 @@ net/.style={
   \draw[->] (mat-\ai-2) -- (mat-6-3);
 \draw[->] (mat-6-3) -- node[above] {Ouput} +(2cm,0);
 \end{tikzpicture}
+\end{center}
 
 \subsection{Backpropogation}
 A central component of neural network training is the backpropogation algorithm. In this
