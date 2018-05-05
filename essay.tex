@@ -61,7 +61,7 @@ Though this is a gross oversimplification of the actual biological processes of 
 
 The process performed by each neuron during training is relatively simple and is thus easier to think about independently. First, the neuron sums the output values of all previous neurons, including the bias neuron, multiplied by their weights. It then passes the result through an activation function, which brings the output into a regular range such as $(0, 1)$ or $(-1, 1)$. There exist many different activation functions, however, in this investigation we use the common $\sigma$ ("sigmoid") function, which limits our neuron's output to $(0, 1)$:
 $$\sigma(x)=\frac{1}{1+e^{-x}}$$
-After the activation function is applied, the returned value is given as the neuron's output, and the process is repeated, using that output as the input for successive neurons. A simple neuron, hence, might be visualized as follows:
+After the activation function is applied, the returned value is given as the neuron's output, and the process is repeated, using that output as the input for successive neurons. A single neuron, hence, might be visualized as follows:
 
 \begin{center}
 \begin{tikzpicture}[
@@ -80,7 +80,7 @@ start chain=2,node distance=13mm
 \end{scope}
 \begin{scope}[start chain=3]
   \node[on chain=3] at (0,-1.5cm) (x3) {$x_3$};
-  \node[on chain=3, label=below:Weights, `join=by o-latex] (w3) {$w_3$};
+  \node[on chain=3, label=below:Weights, join=by o-latex] (w3) {$w_3$};
 \end{scope}
 \node[label=above:\parbox{2cm}{\centering Bias \\ $b$}] at (sigma|-w1) (b) {};
 
@@ -92,16 +92,16 @@ start chain=2,node distance=13mm
 \end{tikzpicture}
 \end{center}
 
-Each neural network contains three types of layers, or vectors of neurons:
+Understanding now the basic logic behind individual neurons, we turn to the the architecture of a full neural network. In the most basic format, known frequently as a "feed forward" network, a neural network contains three types of layers, each of which is a vector of neurons, each taking input from every neuron in the previous layer without interacting with the rest of the layer.
 \begin{itemize}
-\item{Input Layer - Neurons which directly recieve input values.}
-\item{Hidden Layers - Input data is fed through one or more of these, which multiply values by various weights (notated $\omega_n$) in order to arrive at a final "output layer," which contains the data desired by a user.}
-\item{Output Layer - A vector of output values.}
+\item{The first layer is the \textbf{input layer}. Input data is fed directly into this layer, and the number of neurons typically is the same as the number of input values.}
+\item{Following the input layer comes at least one \textbf{hidden layer} (more than one in deep neural networks). The output values of the neurons in these layers are not necessarily returned to a user, rather, they are passed on to the following layer, which can be the output layer or another hidden layer.}
+\item{Neurons in the \textbf{output layer} return the output of the neural network. Note that traditionally, the activation function is implemented here as well, so basic feed forward networks are generally capable only of outputting a value in the range of the chosen activation function.}
 \end{itemize}
 
 \begin{center}
 \begin{tikzpicture}[
-plain/.style={draw=none, fill=none,},
+plain/.style={draw=none, fill=none},
 net/.style={matrix of nodes, nodes={draw, circle, inner sep=10pt}, nodes in empty cells, column sep=2cm, row sep=-9pt}, >=latex
 ]
 \matrix[net] (mat)
