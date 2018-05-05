@@ -21,11 +21,10 @@
 
 \title{An Exploration of Neural Networks as Applied to Written Language Classification}
 \author{Erik Boesen, Candidate [Number]}
-
 \maketitle
 
 \begin{abstract}
-We assess the extent to which artificial neural networks can be used to perform recognition of written languages (conveyed through standard Unicode text rather than as graphically recognized handwriting). We use an artificial deep neural network to achieve a success rate of [Insert] at distinguishing between 8 different languages following supervised training.
+We assess the extent to which artificial neural networks can be used to perform recognition of written languages (conveyed through standard Unicode text rather than as graphically recognized handwriting or type). We use an artificial deep neural network to achieve a success rate of [Insert] at distinguishing between 8 different languages following supervised training.
 \end{abstract}
 
 \section{Introduction}
@@ -38,7 +37,7 @@ For implementing our network we use C++. However, given that the general logic o
 
 using namespace std;
 int main(int argc, char *argv[]) {
-cout << "Hello world!" << endl;
+    cout << "Hello world!" << endl;
 }
 \end{minted}
 
@@ -48,12 +47,12 @@ To train our network, we use dumps of article contents in the selected languages
 For each language, data was retrieved from the 2018-04-20 dump, using the format "Articles, templates, media/file descriptions, and primary meta-pages." These dump files are retrievable at \url{https://dumps.wikimedia.org/enwiki/20180420/enwiki-20180420-pages-articles.xml.bz2} (English, with the same URI format used for other languages). Chinese, Spanish, English, Portuguese, and Russian have Wikimedia databases too large to be practically handled; thus, we use only a single chunk of those databases, which are hosted at inconsistent URIs. We use a simple bash script to download and extract all data:
 \inputminted{bash}{data/download.sh}
 
-We then use a simple Python program \texttt{process.py} to extract article text from the raw XML files and parse it to remove markup characters \cite{parsewikixml}:
+We then use a Python program \texttt{process.py} to extract article text from the raw XML files and parse it to remove markup characters \cite{parsewikixml}:
 \inputminted{python}{data/process.py}
 
 \section{A general overview of neural networks}
-\subsection{Why use Neural Networks?}
-Neural Networks (NNs) are a common technique used in Machine Learning (ML). ML techniques are useful when a large and diverse set of data must be processed (often entailing categorization), but when writing explicit code to make distinctions between data points would be impractical. For example, when identifying objects in an image, as in \cite{hinton12}, it would be nearly impossible to write a procedure to directly read image data and distinguish between many images. Though there exist simpler ML techniques, such as the K Nearest Neighbors algorithm, these strategies have trouble making decisions in so many dimensions with such a complex output vector as demonstrated in \cite{knnic}.
+\subsection{Why use a Neural Network?}
+Neural Networks are a common technique used in the burgeoning field of machine learning. Machine learning techniques are useful when a large and diverse set of data must be processed (often entailing categorization), but when writing explicit code to make distinctions between data points would be impractical. For example, when identifying objects in an image, as in \cite{hinton12}, it would be nearly impossible to write a procedure to directly read image data and distinguish between many images. Though there exist simpler machine learning techniques, such as the K Nearest Neighbors algorithm, these strategies have trouble making decisions in so many dimensions with such a complex output vector as demonstrated in \cite{knnic}. Though the concept of a neural network has existed since the 1980s [citation needed], they have recently had a resurgence of popularity. Machine learning techniques based on neural networks including deep learning [citation needed] and recurrent neural networks [citation needed] have recently been applied to diverse problems, including achieving victory over a human in the age-old game of Go [citation needed], differentiating between multiple thouands of different image classes \cite{hinton12}, and even recognizing voices [citation needed].
 
 \subsection{Structure}
 Neural Networks make tasks like the aforementioned easier by taking cues from neurobiology and simulating how a real brain makes decisions. In the brains of humans and other animals, many neurons are joined together. These neurons themselves simply take electrical input, adjust it, and pass it along to the next neuron. Biological brains readjust the behavior of their individual constituent neurons, and in doing so are able to perform the process of learning.
@@ -61,7 +60,7 @@ Neural Networks make tasks like the aforementioned easier by taking cues from ne
 Though this is a gross oversimplification of the actual biological processes of learning and neuroplasticity, it may be a helpful metaphor to understand the function of an artificial neural network: the technique is remarkably similar, as you will see.
 
 \subsubsection{A neuron}
-The process performed by each neuron during training is relatively simple. First, the neuron sums the output values of all previous neurons, including the bias neuron, multiplied by their weights. It then passes the result through an activation function, which brings the output into a regular range such as $(0, 1)$ or $(-1, 1)$. There exist many different activation functions, however, in this investigation we use the common $\sigma$ ("sigmoid") function:
+The process performed by each neuron during training is relatively simple and is thus easier to think about independently. First, the neuron sums the output values of all previous neurons, including the bias neuron, multiplied by their weights. It then passes the result through an activation function, which brings the output into a regular range such as $(0, 1)$ or $(-1, 1)$. There exist many different activation functions, however, in this investigation we use the common $\sigma$ ("sigmoid") function:
 $$\sigma(x)=\frac{1}{1+e^{-x}}$$
 
 \begin{tikzpicture}[
