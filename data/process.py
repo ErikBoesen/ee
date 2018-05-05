@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as etree
-import mwparserfromhell
+import mwparserfromhell as mwparser
 import re
 
 STRIP_RE = re.compile(r"""^[\|!].*$|^Category:""", re.MULTILINE)
