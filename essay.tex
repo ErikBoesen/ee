@@ -56,8 +56,9 @@ We then use a simple Python program \texttt{process.py} to extract article text 
 Neural Networks (NNs) are a common technique used in Machine Learning (ML). ML techniques are useful when a large and diverse set of data must be processed (often entailing categorization), but when writing explicit code to make distinctions between data points would be impractical. For example, when identifying objects in an image, as in \cite{hinton12}, it would be nearly impossible to write a procedure to directly read image data and distinguish between many images. Though there exist simpler ML techniques, such as the K Nearest Neighbors algorithm, these strategies have trouble making decisions in so many dimensions with such a complex output vector as demonstrated in \cite{knnic}.
 
 \subsection{Structure}
-% TODO: This explanation is insufficient.
-Neural Networks make tasks like the aforementioned easier by taking cues from neurobiology and simulating how a real brain makes decisions. Virtual neurons are chained together in layers.
+Neural Networks make tasks like the aforementioned easier by taking cues from neurobiology and simulating how a real brain makes decisions. In the brains of humans and other animals, many neurons are joined together. These neurons themselves simply take electrical input, adjust it, and pass it along to the next neuron. Biological brains readjust the behavior of their individual constituent neurons, and in doing so are able to perform the process of learning.
+
+Though this is a gross oversimplification of the actual biological processes of learning and neuroplasticity, it may be a helpful metaphor to understand the function of an artificial neural network: the technique is remarkably similar, as you will see.
 
 \subsubsection{A neuron}
 The process performed by each neuron during training is relatively simple. First, the neuron sums the output values of all previous neurons, including the bias neuron, multiplied by their weights. It then passes the result through an activation function, which brings the output into a regular range such as $(0, 1)$ or $(-1, 1)$. There exist many different activation functions, however, in this investigation we use the common $\sigma$ ("sigmoid") function:
