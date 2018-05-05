@@ -61,47 +61,26 @@ Though this is a gross oversimplification of the actual biological processes of 
 
 The process performed by each neuron during training is relatively simple and is thus easier to think about independently. First, the neuron sums the output values of all previous neurons, including the bias neuron, multiplied by their weights. It then passes the result through an activation function, which brings the output into a regular range such as $(0, 1)$ or $(-1, 1)$. There exist many different activation functions, however, in this investigation we use the common $\sigma$ ("sigmoid") function, which limits our neuron's output to $(0, 1)$:
 $$\sigma(x)=\frac{1}{1+e^{-x}}$$
-
-A simple neuron, therefore, might be visualized like so:
+After the activation function is applied, the returned value is given as the neuron's output, and the process is repeated, using that output as the input for successive neurons. A simple neuron, hence, might be visualized as follows:
 
 \begin{center}
 \begin{tikzpicture}[
-init/.style={
-  draw,
-  circle,
-  inner sep=2pt,
-  font=\Huge,
-  join = by -latex
-},
-squa/.style={
-  draw,
-  inner sep=2pt,
-  font=\Large,
-  join = by -latex
-},
+init/.style={draw, circle, inner sep=2pt, font=\Huge, join = by -latex},
+squa/.style={draw, inner sep=2pt, font=\Large, join = by -latex},
 start chain=2,node distance=13mm
 ]
-\node[on chain=2]
-  (x2) {$x_2$};
-\node[on chain=2,join=by o-latex]
-  {$w_2$};
-\node[on chain=2,init] (sigma)
-  {$\displaystyle\Sigma$};
-\node[on chain=2,squa,label=above:{\parbox{2cm}{\centering Activation \\ function}}]
-  {$\sigma$};
-\node[on chain=2,label=above:Output,join=by -latex]
-  {$y$};
+\node[on chain=2] (x2) {$x_2$};
+\node[on chain=2, join=by o-latex] {$w_2$};
+\node[on chain=2, init] (sigma) {$\displaystyle\Sigma$};
+\node[on chain=2, squa,label=above:{\parbox{2cm}{\centering Activation \\ function}}] {$\sigma$};
+\node[on chain=2, label=above:Output,join=by -latex] {$y$};
 \begin{scope}[start chain=1]
-\node[on chain=1] at (0,1.5cm)
-  (x1) {$x_1$};
-\node[on chain=1,join=by o-latex]
-  (w1) {$w_1$};
+  \node[on chain=1] at (0,1.5cm) (x1) {$x_1$};
+  \node[on chain=1, join=by o-latex] (w1) {$w_1$};
 \end{scope}
 \begin{scope}[start chain=3]
-\node[on chain=3] at (0,-1.5cm)
-  (x3) {$x_3$};
-\node[on chain=3,label=below:Weights,join=by o-latex]
-  (w3) {$w_3$};
+  \node[on chain=3] at (0,-1.5cm) (x3) {$x_3$};
+  \node[on chain=3, label=below:Weights, `join=by o-latex] (w3) {$w_3$};
 \end{scope}
 \node[label=above:\parbox{2cm}{\centering Bias \\ $b$}] at (sigma|-w1) (b) {};
 
@@ -122,22 +101,8 @@ Each neural network contains three types of layers, or vectors of neurons:
 
 \begin{center}
 \begin{tikzpicture}[
-plain/.style={
-  draw=none,
-  fill=none,
-  },
-net/.style={
-  matrix of nodes,
-  nodes={
-    draw,
-    circle,
-    inner sep=10pt
-    },
-  nodes in empty cells,
-  column sep=2cm,
-  row sep=-9pt
-  },
->=latex
+plain/.style={draw=none, fill=none,},
+net/.style={matrix of nodes, nodes={draw, circle, inner sep=10pt}, nodes in empty cells, column sep=2cm, row sep=-9pt}, >=latex
 ]
 \matrix[net] (mat)
 {
