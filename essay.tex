@@ -47,7 +47,7 @@ Though this is a gross oversimplification of the actual biological processes of 
 The process performed by each neuron during training is relatively simple and is thus easier to think about independently. First, the neuron sums the output values $\xi$ of all neurons in the previous layer, including a static bias neuron, multiplying each value by calculated weights $\omega$ which are adjusted while the network is trained. The resulting values then pass through an activation function, which brings the output into a regular range such as $(0, 1)$ or $(-1, 1)$. There exist many different activation functions, however, in this investigation we use the common $\sigma$ ("sigmoid") function, which limits our neuron's output to $(0, 1)$:
 $$\sigma(x)=\frac{1}{1+e^{-x}}$$
 Hence, you may think of the neuron output $\mathcal{O}$ thus:
-$$\mathcal{O}=\sigma(\sum[w_{n}\xi_{n}])$$
+$$\mathcal{O}=\sigma(\sum_n[w_{n}\xi_{n}])$$
 After the activation function is applied, the returned value is given as the neuron's output, and the process is repeated, using that output as the input for successive neurons. A single neuron, hence, might be visualized as follows:
 
 \begin{center}
@@ -118,8 +118,8 @@ A central component of neural network training is the process of backpropogation
 
 To calculate error for an individual output neuron, the process is quite simple: we need only to find the difference between the neuron output $\omega_n$ and the known target value $t_n$.
 $$E_n=t_n-\mathcal{O}_n$$
-We can then expand this function to find the total error of the network in one epoch (training iteration) as follows [citation needed]:
-$$E=\frac{1}{2}\sum(t_n-\mathcal{O}_n)^2$$
+We can then expand this function to find the total error of the network during one epoch (training iteration) as follows [citation needed]:
+$$E=\frac{1}{2}\sum_n(t_n-\mathcal{O}_n)^2$$
 
 \section{Appendices}
 
