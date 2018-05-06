@@ -5,7 +5,7 @@ import re
 STRIP_RE = re.compile(r"""^[\|!].*$|^Category:""", re.MULTILINE)
 WS_RE = re.compile('[\n\t ]+')
 
-LANGS = ['zh', 'es', 'en', 'ar', 'hi', 'bn', 'ru']
+LANGS = ['zh', 'es', 'en', 'ar', 'hi', 'bn', 'pt', 'ru']
 
 def strip(text: str) -> str:
     res = mwparser.parse(text).strip_code()
