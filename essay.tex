@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
 \subsection{Training Data}
 To train our network, we use dumps of article contents in the selected languages from the Wikimedia Foundation, obtained from \cite{wikidumps} as recommended in \cite{langsamp}. % Remove second citation?
 
-For each language, data was retrieved from the 2018-04-20 dump, using the format "Articles, templates, media/file descriptions, and primary meta-pages." These dump files are retrievable at \url{https://dumps.wikimedia.org/enwiki/20180420/enwiki-20180420-pages-articles.xml.bz2} (English, with the same URI format used for other languages). Chinese, Spanish, English, Portuguese, and Russian have Wikimedia databases too large to be practically handled; thus, we use only a single chunk of those databases, which are hosted at inconsistent URIs. We use a simple bash script to download and extract data in each language, then a Python program to extract article text from the raw XML files and parse it to remove markup characters \cite{parsewikixml}. Both programs may be found in Appendix A.
+For each language, data was retrieved from the 2018-04-20 dump, using the format "Articles, templates, media/file descriptions, and primary meta-pages." These dump files are retrievable at \url{https://dumps.wikimedia.org/enwiki/20180420/enwiki-20180420-pages-articles.xml.bz2} (English, with the same URI format used for other languages). Chinese, Spanish, English, Portuguese, and Russian have Wikimedia databases too large to be practically handled; thus, we use only a single chunk of those databases, which are hosted at inconsistent URIs. We use a simple bash script to download and extract data in each language, then a Python program to extract article text from the raw XML files and parse it to remove markup characters \cite{parsewikixml}. Both programs may be found in \hyperref[sec:appendix_a]{Appendix A}.
 
 \subsection{A general overview of neural networks}
 \subsubsection{Why use a Neural Network?}
@@ -128,6 +128,8 @@ net/.style={matrix of nodes, nodes={draw, circle, inner sep=8pt}, nodes in empty
 A central component of neural network training is the backpropogation algorithm. In this
 
 \section{Appendices}
+
+\label{sec:appendix_a}
 \subsection{Appendix A: Scripts for building training data}
 Training data for our neural network is retrieved from the Wikimedia Foundation's data dumps in each language. To download and extract the data archives we use a simple bash script \texttt{download.sh}:
 \inputminted{bash}{data/download.sh}
