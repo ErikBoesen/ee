@@ -114,12 +114,12 @@ net/.style={matrix of nodes, nodes={draw, circle, inner sep=8pt}, nodes in empty
 \end{center}
 
 \subsection{Backpropogation}
-A central component of neural network training is the process of backpropogation. In very general terms, backpropogation is the process of determining the "errror" of the network, or the difference between outputs the network delivers and desired outputs, during training, and subsequently going backward through the network and adjusting neuron weights and biases accordingly.
+A central component of neural network training is the process of backpropogation. In very general terms, backpropogation is the process of determining the "error" of the network, or the difference between outputs the network delivers and desired outputs, during training, and subsequently going backward through the network and adjusting neuron weights and biases accordingly.
 
 To calculate error for an individual output neuron, the process is quite simple: we need only to find the difference between the neuron output $\omega_n$ and the known target value $t_n$.
-$$E_n=t_n-\omega_n$$
+$$E_n=t_n-\mathcal{O}_n$$
 We can then expand this function to find the total error of the network in one epoch (training iteration) as follows [citation needed]:
-$$E=\frac{1}{2}\sum(t_n-\omega_n)^2$$
+$$E=\frac{1}{2}\sum(t_n-\mathcal{O}_n)^2$$
 
 \section{Appendices}
 
