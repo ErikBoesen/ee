@@ -32,14 +32,20 @@ void Net::backpropogate(const std::vector<double> &targets) {
 
 	// Calculate gradients on hidden layers
 	for (int layer_num = this->layers.size() - 2; layer_num > 0; --layer_num) {
-		for (int n = 0; n < this->layers[layer_num].size(); ++n)
-			this->layers[layer_num][n].calculate_hidden_gradients(this->layers[layer_num + 1]);
+		Layer &hidden_layer = this->layers[layer_num];
+		Layer &next_layer = this->layers[layer_num + 1];
+
+		for (int n = 0; n < hidden_layer.size(); ++n)
+			hidden_layer[n].calculate_hidden_gradients(next_layer);
 	}
 	// Update synapse weights for all layers except input
 	// TODO: Make sure this is what it's doing
 	for (int layer_num = this->layers.size() - 1; layer_num > 0; --layer_num) {
-		for (int n = 0; n < this->layers[layer_num].size() - 1; ++n)
-			this->layers[layer_num][n].update_input_weights(this->layers[layer_num - 1]);
+		Layer &layer = this->layers[layer_num];
+		Layer &previous_layer = this->layers[layer_num - 1];
+
+		for (int n = 0; n < layer.size() - 1; ++n)
+			layer[n].update_input_weights(previous_layer);
 	}
 }
 
@@ -53,9 +59,9 @@ void Net::feed_forward(const vector<double> &inputs) {
 	}
 
 	// Forward propagate
-	for (int layer_num = 1; layer_num < this->layers.size(); ++layer_num){
+	for (int layer_num = 1; layer_num < this->layers.size(); ++layer_num) {
 		Layer &previous_layer = this->layers[layer_num - 1];
-		for (int n = 0; n < this->layers[layer_num].size() - 1; ++n){
+		for (int n = 0; n < this->layers[layer_num].size() - 1; ++n) {
 			this->layers[layer_num][n].feed_forward(previous_layer);
 		}
 	}
