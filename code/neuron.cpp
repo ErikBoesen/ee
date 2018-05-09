@@ -1,5 +1,6 @@
 #include <vector>
 #include <cmath>
+#include <cstdlib>
 #include "neuron.h"
 
 #define ETA 0.35 // Learning rate [0..1]
@@ -71,7 +72,7 @@ void Neuron::feed_forward(const Layer &previous_layer) {
 Neuron::Neuron(int num_outputs, int index) {
 	for (int c = 0; c < num_outputs; ++c){
 		Synapse synapse;
-		synapse.weight = 1.0/2.0;
+		synapse.weight = (rand() / double(RAND_MAX));
 		this->output_weights.push_back(synapse);
 	}
 
