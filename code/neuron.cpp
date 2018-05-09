@@ -32,7 +32,6 @@ double Neuron::sum_dow(const Layer &next_layer) const {
 	double sum = 0.0;
 
 	// Sum our contributions of the errors at the nodes we feed
-
 	for (int n = 0; n < next_layer.size() - 1; ++n) {
 		sum += this->output_weights[n].weight * next_layer[n].gradient;
 	}
@@ -55,7 +54,7 @@ double Neuron::activation(double x) {
 }
 
 double Neuron::activation_derivative(double x) {
-	// Approximation of tanh derivative
+	// Approximation of tanh derivative around 0
 	return 1.0 - x * x;
 }
 
