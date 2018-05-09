@@ -118,8 +118,11 @@ A central component of neural network training is the process of backpropogation
 
 To calculate error for an individual output neuron, the process is quite simple: we need only to find the difference between the neuron output $\omega_n$ and the known target value $t_n$.
 $$E_n=t_n-\mathcal{O}_n$$
-We can then expand this function to find the total error of the network during one epoch (training iteration) as follows [citation needed]:
-$$E=\frac{1}{2}\sum_n(t_n-\mathcal{O}_n)^2$$
+We can then expand this function to find the total error of the network during one epoch (training iteration) as follows. This equation is frequently referred to as the ``cost function.'' [citation needed]
+$$C=\frac{1}{2}\sum_n(t_n-\mathcal{O}_n)^2$$
+In the context of popular neuroscience (originally in \cite{neuronsfire}), the adage is frequently repeated that ``neurons which fire together, wire together.'' This concept persists in artificial neural networks as well as natural. Through backpropogation, we recursively readjust weights proportionally to their influence on output so as to achieve a more accurate result.
+
+The essence of backpropogation lies in calculating $\frac{\partial{C}}{\partial{\omega}}$ of all weights, or, concretely, the extent to which shifts in each synapse weight affect the final amount of error. Calculating this derivative involves aggressive use of calculus' chain rule.
 
 \section{Appendices}
 
