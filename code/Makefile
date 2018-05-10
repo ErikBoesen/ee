@@ -1,4 +1,4 @@
-all: data_generator nn
+all: clean data_generator nn
 
 data_generator:
 	g++ -o data_generator data_generator.cpp
