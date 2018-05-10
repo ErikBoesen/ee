@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include "neuron.h"
 
-#define ETA 0.35 // Learning rate [0..1]
+#define ETA 0.15 // Learning rate [0..1]
 #define ALPHA 0.5 // Momentum (multiplier of last change in weight) [0..]
 
 using namespace std;
