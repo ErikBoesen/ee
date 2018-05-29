@@ -127,6 +127,12 @@ $$\sigma(x)=\frac{1}{1+e^-x}$$
 We can derive:
 $$\sigma'(x)=\frac{e^-x}{(1+e^-x)^2}=\frac{(1+e^-x)-1}{(1+e^-x)^2}=\frac{1+e^-x}{(1+e^-x)^2}-\left(\frac{1}{1+e^-x}\right)^2=\sigma(x)-\sigma(x)^2=\sigma(x)(1-\sigma(x))$$
 
+\section{Language Identification}
+\subsection{Precedent}
+There exists a great deal of academic literature regarding the use of neural network techniques to recognize spoken and handwritten language \cite{rnnspoken}\cite{dcrnnspoken}. However, the precedent for using neural networks to identify the language of a written text is less well established. Some existing research on this topic includes \cite{langidnn}\cite{langidstanford}. Each of these papers make use of techniques such as network recursion and OTHER OPTIMIZATIONS. In this paper we seek to evaluate the effectiveness of a simple feed-forward network in differentiating between languages.
+
+We borrow several ideas from preceding research \cite{langidstanford}, including the technique of using \textit{n}-grams.
+
 \section{Appendices}
 
 \label{sec:appendix_a}
