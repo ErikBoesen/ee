@@ -8,6 +8,7 @@ if [ ! -e $repo ]; then
 fi
 
 for language in "${languages[@]}"; do
+    echo $language
     mkdir $language
     cp $repo/Task/*/$language/* $language/
 done
