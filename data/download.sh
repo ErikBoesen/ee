@@ -7,9 +7,9 @@ if [ ! -e $repo ]; then
     git clone $url $repo
 fi
 
-mkdir language
+mkdir languages
 for language in "${languages[@]}"; do
     echo $language
-    mkdir language/$language
+    mkdir languages/$language
     cp $repo/Task/*/$language/* languages/$language/
 done
