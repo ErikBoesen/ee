@@ -154,7 +154,6 @@ While it's clearly not always necessary to recognize a language by its raw synta
 For human observers with experience in programming, recognizing the language of a piece of code is a trivial task. To perform such a task in an automated fashion, however, is more difficult, and so is best performed with machine learning techniques. Here, as aforementioned, we will use a feed-forward neural network. There exists no scientific literature on this topic. The only evident instance we could locate of such a task being completed is a single blog post from 2016 \cite{proglangidmedium}.
 
 We will take several cues from preceding research on recognition of textual language. While the task of programming language syntax recognition is not identical to identification of natural human languages, we can borrow some ideas from aforementioned studies. Like in \cite{langidstanford}, we will use the technique of using \textit{n}-grams.
-\todo{Acknowledgements}
 
 \section{Appendices}
 
@@ -164,6 +163,9 @@ Training and testing data for our neural network is retrieved from \url{http://r
 
 Data is retrieved from an index on the code-sharing website GitHub\cite{rosettacodegh} using the script \texttt{download.sh}:
 \inputminted{bash}{data/download.sh}
+
+\section{Acknowledgements}
+I would like to thank Mr. William Snyder for serving as the advisor for this Extended Essay. Ms. Jamie Sample was the Extended Essay Coordinator for the GMHS IB students within the Class of 2019. I'd also like to extend my regards to James Weichert for fighting through his essay on a similar topic alongside me and for pointing me toward numerous terrific resources for grasping the mathematical technique behind neural networks. Finally, I'd like to give my most heartfelt gratitude to Stack Overflow, without which I would never have been able to attempt a Computer Science IA in the first place.
 
 \bibliography{research}
 
