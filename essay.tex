@@ -5,7 +5,7 @@
 \usepackage{tikz}
 \usetikzlibrary{matrix,chains,positioning,decorations.pathreplacing,arrows}
 
-\usepackage[color=red]{todonotes}
+\usepackage[color=white]{todonotes}
 
 \usepackage{minted}
 \usemintedstyle{colorful}
@@ -35,7 +35,7 @@ In this research we seek to develop and implement a neural network which differe
 We explain the rudiments of neural networking techniques used, and give implementation examples using C++ (explaining and keeping to a minimum any idiomatic syntax).
 
 \subsection{Training Data}
-To train our network, we use dumps of code in each programming language obtained from the ``programming chrestomathy'' website RosettaCode \cite{rosettacode}. The website provides diverse solutions to a wide variety of programming problems in hundreds of different languages, and as such is a perfect source of training data in the languages we select. Rather than directly downloading data from Rosetta Code's Wiki, we use a compiled set of task solutions obtained from \cite{rosettacodegh}. Code used to download and build training and testing data may be found in  \hyperref[sec:appendix_a]{Appendix A}.
+To train our network, we use dumps of code in each programming language obtained from the ``programming chrestomathy'' website RosettaCode \cite{rosettacode}. The website provides diverse solutions to a wide variety of programming problems in hundreds of different languages, and as such is a perfect source of training data in the languages we select. \todo{More to say here.} Code used to download and build training and testing data may be found in  \hyperref[sec:appendix_a]{Appendix A}.
 
 \subsection{A general overview of neural networks}
 \subsubsection{Why use a Neural Network?}
@@ -132,18 +132,20 @@ $$\sigma'(x)=\frac{e^-x}{(1+e^-x)^2}=\frac{(1+e^-x)-1}{(1+e^-x)^2}=\frac{1+e^-x}
 
 \section{Language Identification}
 \subsection{Precedent}
+\todo{Replace this with programming language ID.}
 There exists a great deal of academic literature regarding the use of neural network techniques to recognize spoken and handwritten language \cite{rnnspoken}\cite{dcrnnspoken}. However, the precedent for using neural networks to identify the language of a written text is less well established. Some existing research on this topic includes \cite{langidnn}\cite{langidstanford}. Each of these papers make use of techniques such as network recurrence and \todo{List other optimizations and justify why we ignored them and went with simpler implementation}. In this paper we seek to evaluate the effectiveness of a simple feed-forward network in differentiating between languages.
 
 We borrow several ideas from preceding research \cite{langidstanford}, including the technique of using \textit{n}-grams.
 
+\todo{Definitely cite some optimizations from already cited papers though even though we're making this transition}
 \section{Appendices}
 
 \label{sec:appendix_a}
 \subsection{Appendix A: Scripts for building training data}
-Training data for our neural network is retrieved from the Wikimedia Foundation's data dumps in each language. To download and extract the data archives we use a simple bash script \texttt{download.sh}:
+Training and testing data for our neural network is retrieved from \url{http://rosettacode.org/}, a website which aggregates solutions to a wide variety of programming problems. This makes it an ideal source of diverse code using varied syntax.
+
+Data is retrieved from an index on the code-sharing website GitHub\cite{rosettacodegh} using the script \texttt{download.sh}:
 \inputminted{bash}{data/download.sh}
-We then use a program \texttt{process.py} to extract article text from the complicated dump file and export each language's articles into a single text file which may easily be read by the network during training:
-\inputminted{python}{data/process.py}
 
 \bibliography{research}
 
