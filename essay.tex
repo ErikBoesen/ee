@@ -31,7 +31,6 @@ We assess the extent to which artificial neural networks can be used to perform 
 
 \section{Introduction}
 In this research we seek to develop and implement a neural network which differentiates between the world's 10 most commonly used programming languages according to the May 2018 TIOBE Index \cite{tiobe}, a popular index tracking the prevalence of programming languages as measured by search engine queries. These languages are Java, C, C++, Python, C\#, Visual Basic .NET, PHP, JavaScript, SQL, and Ruby. The learning techniques used are generalizable to any selection of languages.
-\todo{Motivations}
 
 We explain the rudiments of neural networking techniques used, and give implementation examples using C++ (explaining and keeping to a minimum any idiomatic syntax).
 
@@ -131,14 +130,28 @@ We can derive:
 $$\sigma'(x)=\frac{e^-x}{(1+e^-x)^2}=\frac{(1+e^-x)-1}{(1+e^-x)^2}=\frac{1+e^-x}{(1+e^-x)^2}-\left(\frac{1}{1+e^-x}\right)^2=\sigma(x)-\sigma(x)^2=\sigma(x)(1-\sigma(x))$$
 \todo{Complete backpropogation section}
 
-\section{Language Identification}
-\subsection{Precedent}
-\todo{Replace this with programming language ID.}
-There exists a great deal of academic literature regarding the use of neural network techniques to recognize spoken and handwritten language \cite{rnnspoken}\cite{dcrnnspoken}. However, the precedent for using neural networks to identify the language of a written text is less well established. Some existing research on this topic includes \cite{langidnn}\cite{langidstanford}. Each of these papers make use of techniques such as network recurrence and \todo{List other optimizations and justify why we ignored them and went with simpler implementation}. In this paper we seek to evaluate the effectiveness of a simple feed-forward network in differentiating between languages.
+\section{Programming Language Identification}
+\subsection{Motivations}
+\todo{Should I move this to the top?}
+There exists a great deal of academic literature regarding the use of neural network techniques to distinguish between natural languages, through media including speech \cite{rnnspoken}\cite{dcrnnspoken}, handwriting \cite{handwritingex}, and typed text \cite{langidnn}\cite{langidstanford}. However, very little research has been performed on the recognition of programming languages. We note several possible cause of this deficit of scholarship:
+\begin{itemize}
+    \item{Programming languages are, almost without exception, input directly into a computer through keyboard I/O or automatic generation (metaprogramming). There are almost no occasions where code must be input orally or through handwriting, and, in the latter case, roughly identical technologies can be used as with traditional language writing. So, the need for research on nontraditional means of code input is infrequent.}
+    \item{Code is generally stored in files with extensions. All files whose names end in \texttt{.c} obviously contain C code, and those with \texttt{.py} extensions are probably Python. Some programs, such as Atom\todo{Citation?}, rely predominantly upon the extension of a file to determine the language of its contents. This clearly is not possible with traditional written language.}
+    \item{Even when files lack an extension, there often exist indicators of language used at the beginning or within the body of a code document. Code written in the markup language \cite{htmlnotproglang} HTML generally begins with \begin{minted}{html}<!DOCTYPE html>\end{minted}. That using interpreted languages such as Shell (and derivatives), Python, Ruby, or Perl, may begin with a ``shebang,'' such as \begin{minted}{bash}\end{minted} specifically providing the system with a path to the interpreter even if no file extension is included. Within the document, further programatic determinations can be made, for example, any file at any point containing \begin{minted}{php}<?php\end{minted} is almost certainly written in PHP. However, these markers are not always present.}
+\end{itemize}
+While it's clearly not always necessary to recognize a language by its raw syntax, there are some occasions in which such a task may be advantageous to perform. Some examples:
+\begin{itemize}
+  \item{It is possible for a user to write an interpreted script, such as one in an interpreted derivative of Shell, without using a shebang or otherwise manually specifying the language of interpretation. In this case, the program would generally be run automatically using the shell from which execution was performed. However, a text editor in which the program is being edited may lack practical means of determining which language is being used, giving its lack of connection to the running shell.}
+  \item{Some file types/extensions are used by multiple languages. For example, the extension \texttt{.h} is used for header files in C, C++, Objective-C, Objective-C++, and other C-like languages. In this instance, it's impossible to tell from a file's extension what language is being used: indeed, an educated guess may even be straightforwardly wrong. \todo{See here: https://github.com/atom/language-c/issues/204 - there is a .hpp extension for C++, but .h is still used quite frequently. Something to note maybe.}}
+  \item{During programming competitions, it may be useful to automatically determine the language in which a participant is writing their solution to a problem, rather than forcing the user to input their choice of language manually.}
+\end{itemize}
+For human observers with experience in programming, recognizing the language of a piece of code is a trivial task. To perform such a task in an automated fashion, however, is more difficult, and so is best performed with machine learning techniques. Here, as aforementioned, we will use a feed-forward neural network. There exists no scientific literature on this topic. The only evident instance of such a task being completed is a single blog post from 2016 \cite{proglangidmedium}.
 
-We borrow several ideas from preceding research \cite{langidstanford}, including the technique of using \textit{n}-grams.
+We will take several cues from preceding research on recognition of textual language. While the task of programming language syntax recognition is not identical to identification of natural human languages, we can borrow some ideas from aforementioned studies. Like in \cite{langidstanford}, we will use the technique of using \textit{n}-grams.
 
 \todo{Definitely cite some optimizations from already cited papers though even though we're making this transition}
+\todo{Acknowledgements}
+
 \section{Appendices}
 
 \label{sec:appendix_a}
