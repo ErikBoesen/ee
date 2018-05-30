@@ -26,16 +26,16 @@
 \maketitle
 
 \begin{abstract}
-We assess the extent to which artificial neural networks can be used to perform recognition of written languages (conveyed through standard Unicode text rather than as graphically recognized handwriting or type). We use an artificial deep neural network to achieve a success rate of [Insert] at distinguishing between 8 different languages following supervised training.
+We assess the extent to which artificial neural networks can be used to perform recognition of programming languages. We use an artificial deep neural network to achieve a success rate of [Insert] at distinguishing between 8 different programming languages following supervised training.
 \end{abstract}
 
 \section{Introduction}
-In this research we seek to develop and implement a neural network which differentiates between the world's 8 most common first languages according to \cite{ethnologue}, namely: Chinese, Spanish, English, Arabic, Hindi, Bengali, Portuguese, and Russian (ISO 639-1 alpha-2 codes zh, es, en, ar, hi, bn, pt, ru) \cite{iso639}. We explain the basics of neural networking techniques implemented, and give implementation examples using C++ (explaining and keeping to a minimum any idiomatic syntax).
+In this research we seek to develop and implement a neural network which differentiates between the world's 10 most commonly used programming languages according to the May 2018 TIOBE Index \cite{tiobe}, a popular index tracking the prevalence of programming languages as measured by search engine queries. These languages are Java, C, C++, Python, C#, Visual Basic .NET, PHP, JavaScript, SQL, and Ruby. The learning techniques used are generalizable to any selection of languages.
+
+We explain the basics of neural networking techniques used, and give implementation examples using C++ (explaining and keeping to a minimum any idiomatic syntax).
 
 \subsection{Training Data}
-To train our network, we use dumps of article contents in the selected languages from the Wikimedia Foundation, obtained from \cite{wikidumps} as recommended in \cite{langsamp}. % Remove second citation?
-
-For each language, data was retrieved from the 2018-04-20 dump, using the format ``Articles, templates, media/file descriptions, and primary meta-pages.'' These dump files are retrievable at \url{https://dumps.wikimedia.org/enwiki/20180420/enwiki-20180420-pages-articles.xml.bz2} (English, with the same URI format used for other languages). Chinese, Spanish, English, Portuguese, and Russian have Wikimedia databases too large to be practically handled; thus, we use only a single chunk of those databases, which are hosted at inconsistent URIs. We use a simple bash script to download and extract data in each language, then a Python program to extract article text from the raw XML files and parse it to remove markup characters \cite{parsewikixml}. Both programs may be found in \hyperref[sec:appendix_a]{Appendix A}.
+To train our network, we use dumps of code in each programming language obtained from the ``programming chrestomathy'' website RosettaCode \cite{rosettacode}. The website provides diverse solutions to a wide variety of programming problems in hundreds of different languages, and as such is a perfect source of training data in the languages we select. Rather than directly downloading data from Rosetta Code's Wiki, we use a compiled set of task solutions obtained from \cite{rosettacodegh}. Code used to download and build training and testing data may be found in  \hyperref[sec:appendix_a]{Appendix A}.
 
 \subsection{A general overview of neural networks}
 \subsubsection{Why use a Neural Network?}
