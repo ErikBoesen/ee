@@ -26,16 +26,13 @@
 \maketitle
 
 \begin{abstract}
-We assess the extent to which artificial neural networks can be used to perform recognition of programming languages. We use an artificial deep neural network to achieve a success rate of \todo{Insert success rate} at distinguishing between 8 different programming languages following supervised training.
+We assess the extent to which artificial neural networks can be used to distinguish between programming languages. We use an artificial deep neural network to achieve a success rate of \todo{Insert success rate} at distinguishing between 8 different programming languages following supervised training.
 \end{abstract}
 
 \section{Introduction}
-In this research we seek to develop and implement a neural network which differentiates between the world's 10 most commonly used programming languages according to the May 2018 TIOBE Index \cite{tiobe}, a popular index tracking the prevalence of programming languages as measured by search engine queries. These languages are Java, C, C++, Python, C\#, Visual Basic .NET, PHP, JavaScript, SQL, and Ruby. The learning techniques used are generalizable to any selection of languages.
+In this research we seek to develop and implement a neural network which differentiates between the world's 10 most commonly used programming languages according to the TIOBE Index \cite{tiobe}, a popular index tracking the prevalence of programming languages as measured by search engine queries. The top 10 languages according to the May 2018 iteration of the Index are Java, C, C++, Python, C\#, Visual Basic .NET, PHP, JavaScript, SQL, and Ruby. The learning techniques used are generalizable to any selection of languages.
 
-We explain the rudiments of neural networking techniques used, and give implementation examples using C++ (explaining and keeping to a minimum any idiomatic syntax).
-
-\subsection{Training Data}
-To train our network, we use dumps of code in each programming language obtained from the ``programming chrestomathy'' website RosettaCode \cite{rosettacode}. The website provides diverse solutions to a wide variety of programming problems in hundreds of different languages, and as such is a perfect source of training data in the languages we select. \todo{More to say here.} Code used to download and build training and testing data may be found in  \hyperref[sec:appendix_a]{Appendix A}.
+In this paper, we explain the rudiments of neural networking techniques used, and give implementation examples using C++ (explaining and keeping to a minimum any idiomatic syntax).
 
 \subsection{A general overview of neural networks}
 \subsubsection{Why use a Neural Network?}
@@ -154,6 +151,9 @@ While it's clearly not always necessary to recognize a language by its raw synta
 For human observers with experience in programming, recognizing the language of a piece of code is a trivial task. To perform such a task in an automated fashion, however, is more difficult, and so is best performed with machine learning techniques. Here, as aforementioned, we will use a feed-forward neural network. There exists no scientific literature on this topic. The only evident instance we could locate of such a task being completed is a single blog post from 2016 \cite{proglangidmedium}.
 
 We will take several cues from preceding research on recognition of textual language. While the task of programming language syntax recognition is not identical to identification of natural human languages, we can borrow some ideas from aforementioned studies. Like in \cite{langidstanford}, we will use the technique of using \textit{n}-grams.
+
+\subsection{Training Data}
+To train our network, we use dumps of code in each programming language obtained from the ``programming chrestomathy'' website RosettaCode \cite{rosettacode}. The website provides diverse solutions to a wide variety of programming problems in hundreds of different languages, and as such is a perfect source of training data in the languages we select. \todo{More to say here.} Code used to download and build training and testing data may be found in  \hyperref[sec:appendix_a]{Appendix A}.
 
 \section{Appendices}
 
