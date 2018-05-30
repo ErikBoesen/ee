@@ -152,8 +152,13 @@ For human observers with experience in programming, recognizing the language of 
 
 We will take several cues from preceding research on recognition of textual language. While the task of programming language syntax recognition is not identical to identification of natural human languages, we can borrow some ideas from aforementioned studies. Like in \cite{langidstanford}, we will use the technique of using \textit{n}-grams.
 
+\section{Implementation}
+In order to illustrate the concepts above described, we implement a simple feed-forward neural network to learn from training samples.
+
 \subsection{Training Data}
 To train our network, we use dumps of code in each programming language obtained from the ``programming chrestomathy'' website RosettaCode \cite{rosettacode}. The website provides diverse solutions to a wide variety of programming problems in hundreds of different languages, and as such is a perfect source of training data in the languages we select. \todo{More to say here.} Code used to download and build training and testing data may be found in  \hyperref[sec:appendix_a]{Appendix A}.
+\subsection{Platform}
+All following code is implemented with C++ and was compiled with GCC through the command line \texttt{g++} program. More compilation specifics can be found in \hyperref[sec:appendix_b]{Appendix B}.
 
 \section{Appendices}
 
@@ -163,6 +168,13 @@ Training and testing data for our neural network is retrieved from \url{http://r
 
 Data is retrieved from an index on the code-sharing website GitHub\cite{rosettacodegh} using the script \texttt{download.sh}:
 \inputminted{bash}{data/download.sh}
+
+\label{sec:appendix_b}
+\subsection{Appendix B: Compilation and System Constants}
+All C++ code was compiled on an Amazon Web Services EC2 Instance running SUSE Linux Enterprise Server 12 (x86_64). The package \texttt{gcc-c++} was installed on the system, and g++ 7.2.1 20171005 was used for compilation. Some testing was also performed on Mac OS X 10.11.6.
+
+The following \texttt{Makefile} was used in all instances:
+\inputminted{makefile}{code/Makefile}
 
 \section{Acknowledgements}
 I would like to thank Mr. William Snyder for serving as the advisor for this Extended Essay. Ms. Jamie Sample was the Extended Essay Coordinator for the GMHS IB students within the Class of 2019. I'd also like to extend my regards to James Weichert for fighting through his essay on a similar topic alongside me and for pointing me toward numerous terrific resources for grasping the mathematical technique behind neural networks. Finally, I'd like to give my most heartfelt gratitude to Stack Overflow, without which I would never have been able to attempt a Computer Science IA in the first place.
