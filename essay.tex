@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage[hidelinks]{hyperref}
+\usepackagehidelinks]{hyperref}
 
 \usepackage{tikz}
 \usetikzlibrary{matrix,chains,positioning,decorations.pathreplacing,arrows}
@@ -26,13 +26,13 @@
 \maketitle
 
 \begin{abstract}
-We assess the extent to which artificial neural networks can be used to perform recognition of programming languages. We use an artificial deep neural network to achieve a success rate of [Insert] at distinguishing between 8 different programming languages following supervised training.
+We assess the extent to which artificial neural networks can be used to perform recognition of programming languages. We use an artificial deep neural network to achieve a success rate of \todo{Insert success rate} at distinguishing between 8 different programming languages following supervised training.
 \end{abstract}
 
 \section{Introduction}
-In this research we seek to develop and implement a neural network which differentiates between the world's 10 most commonly used programming languages according to the May 2018 TIOBE Index \cite{tiobe}, a popular index tracking the prevalence of programming languages as measured by search engine queries. These languages are Java, C, C++, Python, C#, Visual Basic .NET, PHP, JavaScript, SQL, and Ruby. The learning techniques used are generalizable to any selection of languages.
+In this research we seek to develop and implement a neural network which differentiates between the world's 10 most commonly used programming languages according to the May 2018 TIOBE Index \cite{tiobe}, a popular index tracking the prevalence of programming languages as measured by search engine queries. These languages are Java, C, C++, Python, C\#, Visual Basic .NET, PHP, JavaScript, SQL, and Ruby. The learning techniques used are generalizable to any selection of languages.
 
-We explain the basics of neural networking techniques used, and give implementation examples using C++ (explaining and keeping to a minimum any idiomatic syntax).
+We explain the rudiments of neural networking techniques used, and give implementation examples using C++ (explaining and keeping to a minimum any idiomatic syntax).
 
 \subsection{Training Data}
 To train our network, we use dumps of code in each programming language obtained from the ``programming chrestomathy'' website RosettaCode \cite{rosettacode}. The website provides diverse solutions to a wide variety of programming problems in hundreds of different languages, and as such is a perfect source of training data in the languages we select. Rather than directly downloading data from Rosetta Code's Wiki, we use a compiled set of task solutions obtained from \cite{rosettacodegh}. Code used to download and build training and testing data may be found in  \hyperref[sec:appendix_a]{Appendix A}.
