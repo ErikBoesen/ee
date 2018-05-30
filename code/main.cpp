@@ -2,8 +2,8 @@
 #include <iomanip>
 #include <vector>
 #include <cassert>
-#include "net.h"
-#include "reader.h"
+#include "net.hpp"
+#include "reader.hpp"
 
 using namespace std;
 

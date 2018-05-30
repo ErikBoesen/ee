@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "synapse.h"
+#include "synapse.hpp"
 
 using namespace std;
 

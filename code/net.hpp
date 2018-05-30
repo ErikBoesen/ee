@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "neuron.h"
+#include "neuron.hpp"
 
 using namespace std;
 

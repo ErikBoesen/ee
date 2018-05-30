@@ -2,7 +2,7 @@
 #include <cmath>
 #include <cassert>
 #include <vector>
-#include "net.h"
+#include "net.hpp"
 
 using namespace std;
 
