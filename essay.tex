@@ -173,6 +173,14 @@ Data is retrieved from an index on the code-sharing website GitHub\cite{rosettac
 \subsection{Appendix B: Compilation and System Constants}
 All C++ code was compiled on an Amazon Web Services EC2 Instance running SUSE Linux Enterprise Server 12 (x86\_64). The package \texttt{gcc-c++} was installed on the system, and g++ 7.2.1 20171005 was used for compilation. Some testing was also performed on Mac OS X 10.11.6.
 
+\label{sec:appendix_c}
+\subsection{Appendix C: Reader code}
+We use a simple header \texttt{reader.hpp} to define the class and methods of our reader:
+\inputminted{cpp}{code/reader.hpp}
+Then, we implement all methods in \texttt{reader.cpp}:
+\inputminted{cpp}{code/reader.cpp}
+\todo{This code doesn't quite do everything we need}
+
 The following \texttt{Makefile} was used in all instances:
 \inputminted{makefile}{code/Makefile}
 
