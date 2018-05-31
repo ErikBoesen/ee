@@ -30,9 +30,11 @@ void print_error(vector<double> &a, vector<double> &b) {
 int main() {
 	Reader reader("training_data.txt");
 	vector<int> topology;
-	topology.push_back(2);
-	topology.push_back(5);
-	topology.push_back(3);
+	topology.push_back(8); // Input Layer
+	topology.push_back(8); // (Hidden Layer)
+	topology.push_back(9); // (Hidden Layer)
+	topology.push_back(9); // (Hidden Layer)
+	topology.push_back(10); // Output Layer
 
 	Net network(topology);
 
