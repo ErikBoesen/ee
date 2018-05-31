@@ -10,6 +10,6 @@ for language in $(ls languages); do
     ((file_total+=file_count))
     ((line_total+=line_count))
     ((char_total+=char_count))
-    echo "$language: $file_count files $line_count lines $char_count characters $((char_count/N)) $N-grams"
+    echo "$language: $file_count files, $line_count lines, $char_count characters, $((char_count/N)) $N-grams"
 done
-echo "Total: $file_total files $line_total lines $char_total characters $((char_total/N)) $N-grams"
+echo "Total: $file_total files, $line_total lines, $char_total characters, $((char_total/N)) $N-grams"
