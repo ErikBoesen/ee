@@ -57,5 +57,5 @@ int main() {
 	readers[5]->get_ngram(ngram);
 	print_ngram(ngram);
 
-	delete[] readers;
+	for (Reader *r : readers) delete r;
 }
