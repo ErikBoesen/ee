@@ -10,9 +10,12 @@ public:
 	bool isEof() { return this->data_file.eof(); }
 
 	// Returns the number of input values read from the file:
-	int get_inputs(vector<double> &inputs);
-	int get_outputs(vector<double> &outputs);
+	int get_ngram(vector<double> &ngram);
+	int get_language_index() { return this->language_index; }
 
 private:
 	ifstream data_file;
+	string language;
+	int language_index;
+	int num_languages;
 };
