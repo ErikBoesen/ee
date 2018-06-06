@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <vector>
 #include <cassert>
+#include <cmath>
 #include "net.hpp"
 #include "reader.hpp"
 
@@ -19,6 +20,9 @@ void print_vector(vector<double> &v) {
 	cout << ']';
 }
 
+void print_ngram(vector<double> &v) {
+	for (int i = 0; i < v.size(); ++i) cout << (char)round(v[i]);
+}
 void print_error(vector<double> &a, vector<double> &b) {
 	cout << '[';
 	cout << setprecision(4);
