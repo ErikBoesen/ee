@@ -12,6 +12,5 @@ fi
 mkdir languages
 for language in "${languages[@]}"; do
     echo $language
-    mkdir languages/$language
-    cp $repo/Task/*/$language/* languages/$language/
+    cat $repo/Task/*/$language/* > languages/$language
 done
