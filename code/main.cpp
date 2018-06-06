@@ -33,10 +33,10 @@ void print_error(vector<double> &a, vector<double> &b) {
 int main() {
 	string languages[NUM_LANGS] = {"Java", "C", "C++", "Python", "C-sharp", "Visual-Basic-.NET", "PHP", "JavaScript", "SQL", "Ruby"};
 
-	vector<Reader*> readers;
+	Reader *readers[NUM_LANGS];
 	for (int i = 0; i < NUM_LANGS; i++) {
 		Reader reader(languages[i], i);
-		readers.push_back(&reader);
+		readers[i] = &reader;
 	}
 /*
 	vector<int> topology;
