@@ -31,13 +31,14 @@ void print_error(vector<double> &a, vector<double> &b) {
 }
 
 int main() {
-	string languages[NUM_LANGS] = {"Java", "C", "C++", "Python", "C#", "Visual Basic .NET", "PHP", "JavaScript", "SQL", "Ruby"};
-	/*
-	Reader* readers;
-	for (int i = 0; i < NUM_LANGS; i++) {
-		readers[i] = new Reader(languages[i], i, NUM_LANGS);
-	}
+	string languages[NUM_LANGS] = {"Java", "C", "C++", "Python", "C-sharp", "Visual-Basic-.NET", "PHP", "JavaScript", "SQL", "Ruby"};
 
+	vector<Reader*> readers;
+	for (int i = 0; i < NUM_LANGS; i++) {
+		Reader reader(languages[i], i);
+		readers.push_back(&reader);
+	}
+/*
 	vector<int> topology;
 	topology.push_back(8); // Input Layer
 	topology.push_back(8); // (Hidden Layer)
