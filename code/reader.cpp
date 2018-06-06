@@ -5,10 +5,9 @@
 
 using namespace std;
 
-Reader::Reader(const string language, int language_index, int num_languages) {
+Reader::Reader(const string language, int language_index) {
 	this->language = language;
 	this->language_index = language_index;
-	this->num_languages = num_languages;
 	this->data_file.open("data/languages/" + language);
 }
 
