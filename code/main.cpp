@@ -46,18 +46,17 @@ void print_error(vector<double> &a, vector<double> &b) {
 int main() {
 	string languages[NUM_LANGS] = {"Java", "C", "C++", "Python", "C-sharp", "Visual-Basic-.NET", "PHP", "JavaScript", "SQL", "Ruby"};
 
+	// You wouldn't know it, but I spent a solid hour trying to get the below three lines exactly right.
 	Reader *readers[NUM_LANGS];
-	for (int lang_ind = 0; lang_ind < NUM_LANGS; lang_ind++) {
-		Reader reader(languages[lang_ind]);
-		readers[lang_ind] = &reader;
-	}
+	for (int lang_ind = 0; lang_ind < NUM_LANGS; ++lang_ind)
+		readers[lang_ind] = new Reader(languages[lang_ind]);
 
 	vector<int> topology;
-	topology.push_back(8); // Input Layer
+	topology.push_back(N); // Input Layer
 	topology.push_back(8); // (Hidden Layer)
 	topology.push_back(9); // (Hidden Layer)
 	topology.push_back(9); // (Hidden Layer)
-	topology.push_back(10); // Output Layer
+	topology.push_back(NUM_LANGS); // Output Layer
 
 	Net network(topology);
 
@@ -68,12 +67,12 @@ int main() {
 
 	for (int epoch = 0; epoch < TRAINING_EPOCHS; ++epoch) {
 		for (int lang_ind = 0; lang_ind < NUM_LANGS; ++lang_ind) {
-			// Get new input data and feed it forward:
-			if (readers[lang_ind]->get_ngram(ngram) != topology[0]) break;
+			// Get new input data and feed it forward
+			readers[lang_ind]->get_ngram(ngram);
 
 			network.feed_forward(ngram);
 
-			// Collect the net's actual results:
+			// Collect the network's results
 			network.get_results(results);
 
 			// Generate correct outputs
@@ -99,4 +98,7 @@ int main() {
 			cout << ")" << endl;
 		}
 	}
+
+	// Isn't it gorgeous?
+	for (Reader *r : readers) delete r;
 }
