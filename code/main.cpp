@@ -23,7 +23,7 @@ void print_vector(vector<double> &v) {
 
 void print_ngram(vector<double> &v) {
 	// TODO: Clean up rounding mess
-	// TODO: Clean up your own mess
+	// TODO: Clean up your own mess too, let's be real
 	cout << '"';
 	char c;
 	for (int i = 0; i < v.size(); c = (char)round(v[++i])) {
