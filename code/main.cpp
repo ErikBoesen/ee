@@ -6,6 +6,7 @@
 #include "reader.hpp"
 
 #define NUM_LANGS 10
+#define TRAINING_EPOCHS 10 // MAKE THIS MORE BIGLY
 
 using namespace std;
 
