@@ -5,6 +5,8 @@
 #include "net.hpp"
 #include "reader.hpp"
 
+#define NUM_LANGS 10
+
 using namespace std;
 
 void print_vector(vector<double> &v) {
@@ -28,7 +30,13 @@ void print_error(vector<double> &a, vector<double> &b) {
 }
 
 int main() {
-	Reader reader("training_data.txt");
+	string languages[NUM_LANGS] = {"Java", "C", "C++", "Python", "C#", "Visual Basic .NET", "PHP", "JavaScript", "SQL", "Ruby"};
+	Reader* readers;
+	for (int i = 0; i < NUM_LANGS; i++) {
+		readers[i] = new Reader(languages[i], i, NUM_LANGS);
+	}
+
+	/*
 	vector<int> topology;
 	topology.push_back(8); // Input Layer
 	topology.push_back(8); // (Hidden Layer)
@@ -69,5 +77,5 @@ int main() {
 		cout << "), (error ";
 		print_error(results, targets);
 		cout << ")" << endl;
-	}
+	}*/
 }

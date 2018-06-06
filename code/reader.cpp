@@ -1,40 +1,28 @@
 #include <vector>
+#include <fstream>
 #include "reader.hpp"
+#define N 8
 
-Reader::Reader(const string filename) {
-	this->data_file.open(filename);
+using namespace std;
+
+Reader::Reader(const string language, int language_index, int num_languages) {
+	this->language = language;
+	this->language_index = lanuage_index;
+	this->num_languages = num_languages;
+	this->data_file.open("data/languages/" + language);
 }
 
-int Reader::get_inputs(vector<double> &inputs) {
+int Reader::get_ngram(vector<double> &ngram) {
     inputs.clear();
-
-    string line;
-    getline(this->data_file, line);
-    stringstream ss(line);
-
-    string label;
-    ss >> label;
-    if (label.compare("input:") == 0) {
-        double input;
-        while (ss >> input) inputs.push_back(input);
-    }
-
+	for (int i = 0; i < N; i++)
+		inputs.push_back((double)(this->data_file.get()));
     return inputs.size();
 }
 
 int Reader::get_outputs(vector<double> &outputs) {
     outputs.clear();
-
-    string line;
-    getline(this->data_file, line);
-    stringstream ss(line);
-
-    string label;
-    ss >> label;
-    if (label.compare("output:") == 0) {
-        double output;
-        while (ss >> output) outputs.push_back(output);
-    }
+	for (int i = 0; i < this->num_languages; i++) outputs.push_back(0);
+	outputs[self.language_index] = 1;
 
     return outputs.size();
 }
