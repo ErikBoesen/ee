@@ -26,7 +26,7 @@
 \maketitle
 
 \begin{abstract}
-We assess the extent to which artificial neural networks can be used to distinguish between programming languages. We use an artificial deep neural network to achieve a success rate of \todo{Insert success rate} at distinguishing between 8 different programming languages following supervised training.
+We assess the extent to which artificial neural networks can be used to distinguish between programming languages. We use a deep neural network to achieve a success rate of \todo{Insert success rate} at distinguishing between 8 different programming languages following supervised training.
 \end{abstract}
 
 \section{Introduction}
@@ -173,14 +173,14 @@ We implement methods on the \texttt{Reader} class for reading an 8-gram from eac
 We will implement a single neuron example as follows:
 \todo{Include neuron code without blowing up the document and boring people (i.e. only show the relevant parts and save the code for the appendices). Will worry about this in a bit.}
 
-To build our network, we will chain together six layers:
+To build our network, we chain together six layers:
 \begin{enumerate}
   \item{The first (input) layer will contain eight neurons, one for each character of our 8-grams.}
   \item{The second through fifth layer will be hidden layers.}
   \item{The output layer will contain 10 output neurons, expressing a probability ($[0..1]$) that the code is written in each of the 10 languages.}
 \end{enumerate}
 
-For each training example, we will perform the following steps:
+For each training example, we perform the following steps:
 \begin{enumerate}
   \item{Fetch an example in the next language}
   \item{Pass that example into our neural network and feed forward.}
@@ -192,7 +192,18 @@ For each training example, we will perform the following steps:
 Or, expressed as code:
 \todo{Insert training code}
 
-\todo{Add Improvements section}
+\section{Future questions and improvements}
+\begin{itemize}
+  \item{In order to simplify the process of reading data, we concatenate all training samples for each language into one file. This may lead to unpredictable behavior as, for example, the program might gain the impression that an $n$-gram such as
+  \begin{minted}{c}
+// ...
+    return 0;
+}
+#include <stdio.h>
+// ...
+  \end{minted}
+  is normal. This is not likely to interfere substantially with the identification process, however, the abnormal way in which we group the files is a point worthy of reflection and possible change.}
+\end{itemize}
 
 \section{Appendices}
 
