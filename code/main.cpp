@@ -6,6 +6,7 @@
 #include "net.hpp"
 #include "reader.hpp"
 
+#define N 8 // Length of n-grams
 #define NUM_LANGS 10
 #define TRAINING_EPOCHS 10 // TODO: MAKE MORE BIGLY (┛◉Д◉)┛
 
@@ -21,8 +22,15 @@ void print_vector(vector<double> &v) {
 }
 
 void print_ngram(vector<double> &v) {
-	// TODO: Find a way around this rounding mess
-	for (int i = 0; i < v.size(); ++i) cout << (char)round(v[i]);
+	// TODO: Clean up rounding mess
+	// TODO: Clean up your own mess
+	cout << '"';
+	char c;
+	for (int i = 0; i < v.size(); c = (char)round(v[++i])) {
+		if (c == '\n') cout << "\\n";
+		else cout << c;
+	}
+	cout << '"';
 }
 void print_error(vector<double> &a, vector<double> &b) {
 	cout << '[';
