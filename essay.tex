@@ -186,7 +186,7 @@ For each training example, we perform the following steps:
   \item{Pass that example into our neural network and feed forward.}
   \item{Retrieve the network's outputs.}
   \item{Ask the \texttt{Reader} \todo{or just figure out based on which training example this is what language the sample is actually in} in what language the source document was truly written.}
-  \item{Setting the correct language's output neuron to 1 and others to 0, backpropograte and adjust weights\todo{And biases}.}
+  \item{Setting the correct language's output neuron to 1 and others to 0, backpropogate and adjust weights\todo{And biases}.}
   \item{Log diagnostic information and inform user of training progress.}
 \end{enumerate}
 Or, expressed as code:
@@ -202,7 +202,7 @@ Or, expressed as code:
 #include <stdio.h>
 // ...
   \end{minted}
-  is normal. This is not likely to interfere substantially with the identification process, however, the abnormal way in which we group the files is a point worthy of reflection and possible change.\todo{I can't really see this being an issue ever. But it might be something good to talk about and anyway I don't want to forget it. Hey August version of Erik going over this, what's up?}}
+  is normal.\footnote{C/C++'s \texttt{\#include} statement seldom comes anywhere but the beginning of files.} This is not likely to interfere substantially with the identification process, however, the abnormal way in which we group the files is a point worthy of reflection and possible change.\todo{I can't really see this being an issue ever. But it might be something good to talk about and anyway I don't want to forget it. Hey August version of Erik going over this, what's up?}}
 \end{itemize}
 
 \section{Appendices}
