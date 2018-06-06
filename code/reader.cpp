@@ -5,15 +5,14 @@
 
 using namespace std;
 
-Reader::Reader(const string language, int language_index) {
+Reader::Reader(const string language) {
 	this->language = language;
-	this->language_index = language_index;
 	this->data_file.open("data/languages/" + language);
 }
 
 int Reader::get_ngram(vector<double> &ngram) {
     ngram.clear();
 	for (int i = 0; i < N; i++)
-		ngram.push_back((double)(this->data_file.get()));
+		ngram.push_back(this->data_file.get());
     return ngram.size();
 }
