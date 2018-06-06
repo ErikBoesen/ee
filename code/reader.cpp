@@ -6,7 +6,6 @@
 using namespace std;
 
 Reader::Reader(const string language) {
-	this->language = language;
 	this->data_file.open("data/languages/" + language);
 }
 

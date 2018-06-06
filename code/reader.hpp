@@ -11,5 +11,4 @@ public:
 
 private:
 	ifstream data_file;
-	string language;
 };

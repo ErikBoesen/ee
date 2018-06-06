@@ -21,6 +21,7 @@ void print_vector(vector<double> &v) {
 }
 
 void print_ngram(vector<double> &v) {
+	// TODO: Find a way around this rounding mess
 	for (int i = 0; i < v.size(); ++i) cout << (char)round(v[i]);
 }
 void print_error(vector<double> &a, vector<double> &b) {
@@ -39,7 +40,7 @@ int main() {
 
 	Reader *readers[NUM_LANGS];
 	for (int lang_ind = 0; lang_ind < NUM_LANGS; lang_ind++) {
-		Reader reader(languages[lang_ind], lang_ind);
+		Reader reader(languages[lang_ind]);
 		readers[lang_ind] = &reader;
 	}
 
@@ -78,7 +79,7 @@ int main() {
 			network.backpropogate(targets);
 
 			cout << "E" << epoch << " / ";
-			print_vector(ngram);
+			print_ngram(ngram);
 			cout << " > ";
 			cout << setprecision(4);
 			print_vector(results);
