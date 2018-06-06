@@ -6,7 +6,7 @@
 #include "reader.hpp"
 
 #define NUM_LANGS 10
-#define TRAINING_EPOCHS 10 // TODO: MAKE MORE BIGLY (┛◉Д◉)┛彡┻━┻
+#define TRAINING_EPOCHS 10 // TODO: MAKE MORE BIGLY (┛◉Д◉)┛
 
 using namespace std;
 
@@ -34,11 +34,11 @@ int main() {
 	string languages[NUM_LANGS] = {"Java", "C", "C++", "Python", "C-sharp", "Visual-Basic-.NET", "PHP", "JavaScript", "SQL", "Ruby"};
 
 	Reader *readers[NUM_LANGS];
-	for (int i = 0; i < NUM_LANGS; i++) {
-		Reader reader(languages[i], i);
-		readers[i] = &reader;
+	for (int lang_ind = 0; lang_ind < NUM_LANGS; lang_ind++) {
+		Reader reader(languages[lang_ind], lang_ind);
+		readers[lang_ind] = &reader;
 	}
-/*
+
 	vector<int> topology;
 	topology.push_back(8); // Input Layer
 	topology.push_back(8); // (Hidden Layer)
@@ -48,36 +48,42 @@ int main() {
 
 	Net network(topology);
 
-	vector<double> inputs, targets, results;
+	vector<double> ngram, targets, results;
 
+	// Trim decimals
 	cout << fixed << setprecision(0);
 
-	for (int epoch = 0; !reader.isEof(); ++epoch) {
-		// Get new input data and feed it forward:
-		if (reader.get_inputs(inputs) != topology[0]) break;
+	for (int epoch = 0; epoch < TRAINING_EPOCHS; ++epoch) {
+		for (int lang_ind = 0; lang_ind < NUM_LANGS; ++lang_ind) {
+			// Get new input data and feed it forward:
+			if (reader.get_ngram(ngram) != topology[0]) break;
 
-		network.feed_forward(inputs);
+			network.feed_forward(ngram);
 
-		// Collect the net's actual results:
-		network.get_results(results);
+			// Collect the net's actual results:
+			network.get_results(results);
 
-		// Show correct outputs
-		reader.get_outputs(targets);
-		assert(targets.size() == topology.back());
+			// Generate correct outputs
+			//reader.get_outputs(targets);
+			targets.clear();
+			for (int field = 0; field < NUM_LANGS; ++field) targets.push_back(0);
+			targets[lang_ind] = 1;
+			assert(targets.size() == topology.back());
 
-		// Backpropogate!
-		network.backpropogate(targets);
+			// Backpropogate!
+			network.backpropogate(targets);
 
-		cout << "E" << epoch << " / ";
-		print_vector(inputs);
-		cout << " > ";
-		cout << setprecision(4);
-		print_vector(results);
-		cout << setprecision(0);
-		cout << " (targets ";
-		print_vector(targets);
-		cout << "), (error ";
-		print_error(results, targets);
-		cout << ")" << endl;
-	}*/
+			cout << "E" << epoch << " / ";
+			print_vector(inputs);
+			cout << " > ";
+			cout << setprecision(4);
+			print_vector(results);
+			cout << setprecision(0);
+			cout << " (targets ";
+			print_vector(targets);
+			cout << "), (error ";
+			print_error(results, targets);
+			cout << ")" << endl;
+		}
+	}
 }
