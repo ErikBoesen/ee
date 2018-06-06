@@ -56,7 +56,7 @@ int main() {
 	for (int epoch = 0; epoch < TRAINING_EPOCHS; ++epoch) {
 		for (int lang_ind = 0; lang_ind < NUM_LANGS; ++lang_ind) {
 			// Get new input data and feed it forward:
-			if (reader.get_ngram(ngram) != topology[0]) break;
+			if (readers[lang_ind]->get_ngram(ngram) != topology[0]) break;
 
 			network.feed_forward(ngram);
 
@@ -74,7 +74,7 @@ int main() {
 			network.backpropogate(targets);
 
 			cout << "E" << epoch << " / ";
-			print_vector(inputs);
+			print_vector(ngram);
 			cout << " > ";
 			cout << setprecision(4);
 			print_vector(results);
