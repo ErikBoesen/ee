@@ -9,6 +9,7 @@
 #define N 8 // Length of n-grams
 #define NUM_LANGS 10
 #define TRAINING_EPOCHS 10 // TODO: MAKE MORE BIGLY (┛◉Д◉)┛
+#define PRECISION 2
 
 using namespace std;
 
@@ -34,7 +35,7 @@ void print_ngram(vector<double> &v) {
 }
 void print_error(vector<double> &a, vector<double> &b) {
 	cout << '[';
-	cout << setprecision(4);
+	cout << setprecision(PRECISION);
 	for (int i = 0; i < a.size(); ++i) {
 		cout << b[i] - a[i];
 		if (i != a.size() - 1) cout << " ";
@@ -88,7 +89,7 @@ int main() {
 			cout << "E" << epoch << " / ";
 			print_ngram(ngram);
 			cout << " > ";
-			cout << setprecision(4);
+			cout << setprecision(PRECISION);
 			print_vector(results);
 			cout << setprecision(0);
 			cout << " (targets ";
