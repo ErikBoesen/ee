@@ -86,17 +86,14 @@ int main() {
 			// Backpropogate!
 			network.backpropogate(targets);
 
-			cout << "E" << epoch << " / ";
+			cout << "\033[36mE" << epoch << " (" << languages[lang_ind] << ',' << lang_ind << ") / \033[33m";
 			print_ngram(ngram);
-			cout << " > ";
+			cout << "\033[0m > \033[32m";
 			cout << setprecision(PRECISION);
 			print_vector(results);
-			cout << setprecision(0);
-			cout << " (targets ";
-			print_vector(targets);
-			cout << "), (error ";
+			cout << " \033[31merr";
 			print_error(results, targets);
-			cout << ")" << endl;
+			cout << endl;
 		}
 	}
 
