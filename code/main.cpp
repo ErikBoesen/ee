@@ -26,8 +26,8 @@ void print_ngram(vector<double> &v) {
 	// TODO: Clean up rounding mess
 	// TODO: Clean up your own mess too, let's be real
 	cout << '"';
-	char c;
-	for (int i = 0; i < v.size(); c = (char)round(v[++i])) {
+	for (int i = 0; i < v.size(); ++i) {
+		char c = (char)round(v[i]);
 		if (c == '\n') cout << "\\n";
 		else cout << c;
 	}
