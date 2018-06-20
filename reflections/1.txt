@@ -1,0 +1,7 @@
+I spoke with my supervisor today, Monday, April 30, 2018, to get a grounding in my sources.
+
+The predominant element which pulled me toward research on neural networks was my fascination with the subject and desire to create a high-quality piece of literature through which I could teach myself new material within that subject area.
+
+I have located several scientific primary sources, including one describing the original theory of deep learning through a neural network, and another describing the technique of language recognition using the neural network technique. I've also located sources describing other techniques for performing language recognition.
+
+By far the most challenging part of this essay will be the raw implementation of the neural network to perform language recognition. I have already implemented a simple neural network, but it is only capable of learning to perform binary XOR/OR/AND operations and cannot do language recognition yet.
