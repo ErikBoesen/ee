@@ -1,0 +1,5 @@
+I spoke with Mr. Snyder for a second time on May 29th, 2018, with regards to the organization for my paper. I informed him that I have found substantial sources off of which I believe I will be able to sustain a complete paper. I do need to work on sourcing still, though: when creating extended essays in Computer Science, it can be sometimes difficult to accurately document from where information is derived as, in the field of CS, work is not always academic.
+
+I will begin the essay with a ground-up outline of what a neural network is, how it and the math within it works, and how they are relevant and applicable to my topic of programming language recognition. Then, I will outline all the logic I am performing to actually train a neural network and get results from it.
+
+Through this intuitive explanation and flow, I hope to bring all readers to a point of general understanding by the conclusion of my paper.
