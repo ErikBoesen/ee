@@ -10,7 +10,7 @@ public:
 
     // Deprecated
 	int get_ngram(vector<double> &ngram);
-    vector<double> get_rates();
+    int get_rates(vector<double> &rates);
 
 
 private:

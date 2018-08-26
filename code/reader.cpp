@@ -21,20 +21,20 @@ int Reader::get_ngram(vector<double> &ngram) {
     return ngram.size();
 }
 
-vector<double> Reader::get_rates() {
-    vector<double> rates;
+int Reader::get_rates(vector<double> &rates) {
+    rates.clear();
     for (char c = 0; c <= TRACK_END - TRACK_START; c++) {
-        rates[c] = 0;
+        rates.push_back(0);
     }
     int i;
     for (char c; i < N; this->data_file.get(c)) {
         if (c > 32 || c < 127) {
             i++;
-            counts[c - TRACK_START]++;
+            rates[c - TRACK_START]++;
         }
     }
     for (char c = 0; c <= TRACK_END - TRACK_START; c++) {
         rates[c] /= N;
     }
-    return rates;
+    return rates.size();
 }

@@ -51,7 +51,7 @@ int main() {
 		readers[lang_ind] = new Reader(languages[lang_ind]);
 
 	vector<int> topology;
-	topology.push_back(N); // Input Layer
+	topology.push_back(); // Input Layer
 	topology.push_back(8); // (Hidden Layer)
 	topology.push_back(9); // (Hidden Layer)
 	topology.push_back(9); // (Hidden Layer)
@@ -59,7 +59,7 @@ int main() {
 
 	Net network(topology);
 
-	vector<double> ngram, targets, results;
+	vector<double> rates, targets, results;
 
 	// Trim decimals
 	cout << fixed << setprecision(0);
@@ -67,9 +67,9 @@ int main() {
 	for (int epoch = 0; epoch < TRAINING_EPOCHS; ++epoch) {
 		for (int lang_ind = 0; lang_ind < NUM_LANGS; ++lang_ind) {
 			// Get new input data and feed it forward
-			readers[lang_ind]->get_ngram(ngram);
+			readers[lang_ind]->get_rates(rates);
 
-			network.feed_forward(ngram);
+			network.feed_forward(rates);
 
 			// Collect the network's results
 			network.get_results(results);
@@ -85,7 +85,7 @@ int main() {
 			network.backpropogate(targets);
 
 			cout << "\033[36mE" << epoch << " (" << languages[lang_ind] << ',' << lang_ind << ") / \033[33m";
-			print_ngram(ngram);
+			//print_ngram(rates);
 			cout << "\033[0m > \033[32m";
 			cout << setprecision(PRECISION);
 			print_vector(results);
