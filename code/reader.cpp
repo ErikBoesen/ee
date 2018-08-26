@@ -1,8 +1,6 @@
 #include <vector>
 #include <fstream>
 #include "reader.hpp"
-// TODO: Experiment with larger values for N
-#define N 1000
 
 using namespace std;
 

@@ -6,9 +6,8 @@
 #include "net.hpp"
 #include "reader.hpp"
 
-#define N 8 // Length of n-grams
 #define NUM_LANGS 10
-#define TRAINING_EPOCHS 10 // TODO: MAKE MORE BIGLY (┛◉Д◉)┛
+#define TRAINING_EPOCHS 1000
 #define PRECISION 2
 
 using namespace std;
@@ -51,8 +50,7 @@ int main() {
 		readers[lang_ind] = new Reader(languages[lang_ind]);
 
 	vector<int> topology;
-    cout << TRACK_END-TRACK_START << endl;exit(0);
-	topology.push_back(TRACK_END - TRACK_START); // Input Layer
+	topology.push_back(TRACK_END - TRACK_START + 1); // Input Layer
 	topology.push_back(8); // (Hidden Layer)
 	topology.push_back(9); // (Hidden Layer)
 	topology.push_back(9); // (Hidden Layer)
