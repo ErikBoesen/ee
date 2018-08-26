@@ -1,6 +1,5 @@
 #include <vector>
 #include <fstream>
-#include <map>
 #include "reader.hpp"
 // TODO: Experiment with larger values for N
 #define N 1000
@@ -22,21 +21,20 @@ int Reader::get_ngram(vector<double> &ngram) {
     return ngram.size();
 }
 
-map<char, double> Reader::get_rates() {
-    map<char, int> counts;
-    for (char c = TRACK_START; c <= TRACK_END; c++) {
-        counts[c] = 0;
+vector<double> Reader::get_rates() {
+    vector<double> rates;
+    for (char c = 0; c <= TRACK_END - TRACK_START; c++) {
+        rates[c] = 0;
     }
     int i;
     for (char c; i < N; this->data_file.get(c)) {
         if (c > 32 || c < 127) {
             i++;
-            counts[c]++;
+            counts[c - TRACK_START]++;
         }
     }
-    map<char, double> rates;
-    for (char c = TRACK_START; c <= TRACK_END; c++) {
-        rates[c] = counts[c] / N;
+    for (char c = 0; c <= TRACK_END - TRACK_START; c++) {
+        rates[c] /= N;
     }
     return rates;
 }
