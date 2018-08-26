@@ -5,6 +5,10 @@
 // TODO: Experiment with larger values for N
 #define N 1000
 
+// Constants defining the starting and ending of the ASCII range we want to pay attention to
+#define TRACK_START 32
+#define TRACK_END 126
+
 using namespace std;
 
 Reader::Reader(const string language) {
@@ -20,7 +24,7 @@ int Reader::get_ngram(vector<double> &ngram) {
 
 map<char, double> Reader::get_rates() {
     map<char, int> counts;
-    for (char c = ' '; c < 127; c++) {
+    for (char c = TRACK_START; c <= TRACK_END; c++) {
         counts[c] = 0;
     }
     int i;
@@ -31,7 +35,7 @@ map<char, double> Reader::get_rates() {
         }
     }
     map<char, double> rates;
-    for (char c = ' '; c < 127; c++) {
+    for (char c = TRACK_START; c <= TRACK_END; c++) {
         rates[c] = counts[c] / N;
     }
     return rates;
