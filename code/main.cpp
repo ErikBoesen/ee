@@ -51,7 +51,8 @@ int main() {
 		readers[lang_ind] = new Reader(languages[lang_ind]);
 
 	vector<int> topology;
-	topology.push_back(); // Input Layer
+    cout << TRACK_END-TRACK_START << endl;exit(0);
+	topology.push_back(TRACK_END - TRACK_START); // Input Layer
 	topology.push_back(8); // (Hidden Layer)
 	topology.push_back(9); // (Hidden Layer)
 	topology.push_back(9); // (Hidden Layer)
