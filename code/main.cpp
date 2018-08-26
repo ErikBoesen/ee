@@ -24,7 +24,6 @@ void print_vector(vector<double> &v) {
 
 void print_ngram(vector<double> &v) {
 	// TODO: Clean up rounding mess
-	// TODO: Clean up your own mess too, let's be real
 	cout << '"';
 	for (int i = 0; i < v.size(); ++i) {
 		char c = (char)round(v[i]);
@@ -47,7 +46,6 @@ void print_error(vector<double> &a, vector<double> &b) {
 int main() {
 	string languages[NUM_LANGS] = {"Java", "C", "C++", "Python", "C-sharp", "Visual-Basic-.NET", "PHP", "JavaScript", "SQL", "Ruby"};
 
-	// You wouldn't know it, but I spent a solid hour trying to get the below three lines exactly right.
 	Reader *readers[NUM_LANGS];
 	for (int lang_ind = 0; lang_ind < NUM_LANGS; ++lang_ind)
 		readers[lang_ind] = new Reader(languages[lang_ind]);
