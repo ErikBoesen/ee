@@ -50,12 +50,18 @@ int main() {
 		readers[lang_ind] = new Reader(languages[lang_ind]);
 
 	vector<int> topology;
-	topology.push_back(TRACK_END - TRACK_START + 1); // Input Layer
-	topology.push_back(8); // (Hidden Layer)
-	topology.push_back(9); // (Hidden Layer)
-	topology.push_back(9); // (Hidden Layer)
-	topology.push_back(NUM_LANGS); // Output Layer
-
+    int input_size = TRACK_END - TRACK_START + 1;
+    // Input layer
+    topology.push_back(input_size);
+    // Hidden layers
+    while (input_size > NUM_LANGS) {
+        cout << "Making a hidden layer of size " << input_size << endl;
+        input_size *= 0.75;
+        cout << "input_size is now " << input_size << endl;
+        topology.push_back(input_size);
+    }
+    // Output Layer
+	topology.push_back(NUM_LANGS);
 	Net network(topology);
 
 	vector<double> rates, targets, results;
