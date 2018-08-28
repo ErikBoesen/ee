@@ -160,7 +160,7 @@ We will take several cues from preceding research on recognition of textual lang
 In order to illustrate the concepts above described, we implement a simple feed-forward neural network to learn from training samples.
 
 \subsection{Training Data}
-To train our network, we use dumps of code in each programming language obtained from the ``programming chrestomathy'' website RosettaCode \cite{rosettacode}. The website provides diverse solutions to a wide variety of programming problems in hundreds of different languages, and as such is a perfect source of training data in the languages we select. \todo{More to say here.} Code used to download and build training and testing data may be found in  \hyperref[sec:appendix_a]{Appendix A}.
+To train our network, we use dumps of code in each programming language obtained from the ``programming chrestomathy'' website RosettaCode \cite{rosettacode}. The website provides diverse solutions to a wide variety of programming problems in hundreds of different languages. Because it has such varied code written in the languages we've selected from diverse programmers written with many different styles, it is a perfect source of training data in the languages we select. Training on too-homogenous data could negatively impact our network's ability to process code samples unlike those it has seen before. Code used to download and build training and testing data may be found in  \hyperref[sec:appendix_a]{Appendix A}.
 \subsection{Platform}
 All following code is implemented with C++ and was compiled with GCC through the command line \texttt{g++} program. More compilation specifics can be found in \hyperref[sec:appendix_b]{Appendix B}.
 
