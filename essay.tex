@@ -170,7 +170,9 @@ Most research on natural language recognition, including \cite{langidstanford}, 
 
 From investigation of the samples where incorrect predictions were made, we found that most contained simple English text, written in in-code ``comments,'' or natural-language explanations of code written directly into the code document.
 
-Such an outcome is difficult to avoid; short of artificially cleaning comments from source files in training and evaluation of new data, our network may become confused by excessive amounts of plain natural-language text which do not vary between programming languages.
+Such an outcome is difficult to avoid when separating by $n$-grams. Short of artificially cleaning comments from source files in training and evaluation of new data, our network may become confused by excessive amounts of plain natural-language text which do not vary between programming languages.
+
+So, instead, we will create input vectors by reading in an $1000$-character string of code, and, rather than directly passing in character values, calculating character frequency relative to the total number of counted characters, and passing in this data as an input vector. Ideally, the network will recognize the relative unimportance of those characters which are less important to the identity of a piece of code, such as the alphanumeric characters, while relying more on indicators like semicolons or brackets.
 
 We will implement a single neuron example as follows:
 \todo{Include neuron code without blowing up the document and boring people (i.e. only show the relevant parts and save the code for the appendices). Will worry about this in a bit.}
