@@ -118,7 +118,6 @@ net/.style={matrix of nodes, nodes={draw, circle, inner sep=8pt}, nodes in empty
 \end{center}
 
 \subsection{Backpropogation}
-\todo{Talk about gradient descent here too. Insert some of those huge equations and stuff.}
 A central component of neural network training is the process of backpropogation. In very general terms, backpropogation is the process of determining the ``error'' of the network, or the difference between outputs the network delivers and desired outputs, during training, and subsequently going backward through the network and adjusting neuron weights and biases accordingly.
 
 To calculate error for an individual output neuron, the process is quite simple: we need only to find the difference between the neuron output $\omega_n$ and the known target value $t_n$.
@@ -135,7 +134,6 @@ $$\sigma'(x)=\frac{e^-x}{(1+e^-x)^2}=\frac{(1+e^-x)-1}{(1+e^-x)^2}=\frac{1+e^-x}
 
 \section{Programming Language Identification}
 \subsection{Motivations}
-\todo{Should I move this to the top?}
 There exists a great deal of academic literature regarding the use of neural network techniques to recognize and distinguish between natural languages, through media including speech \cite{rnnspoken}\cite{dcrnnspoken}, handwriting \cite{handwritingex}, and typed text \cite{langidnn}\cite{langidstanford}. However, very little research has been performed on the recognition of programming languages. We note several possible causes of this deficit of scholarship:
 \begin{itemize}
     \item{Programming languages are, almost without exception, input directly into a computer through keyboard I/O or automatic generation (metaprogramming). There are almost no occasions where code must be input orally or through handwriting, and, in the latter case, roughly identical technologies can be used as with traditional language writing. So, the need for research on nontraditional means of code input, such as through writing on paper, optical character recognition, or oral dictation, is infrequent.}
@@ -198,7 +196,11 @@ For each training example, we perform the following steps:
 Or, expressed as code:
 \todo{Insert training code}
 
+\section{Results}
+Though the results were not flawless, there was noticeable improvement in results throughout the training process. At the beginning of the training process, results were erratic and just about never correct. However, they steadily moved toward more rational
+
 \section{Future questions and improvements}
+The network certainly is far from perfect, and future research is needed to refine the techniques expressed above. Concretely, a few opportunities for improvement are evident.
 \begin{itemize}
   \item{In order to simplify the process of reading data, we concatenate all training samples for each language into one file. This may lead to unpredictable behavior as, for example, the program might gain the impression that an $n$-gram such as
   \begin{minted}{c}
@@ -208,8 +210,11 @@ Or, expressed as code:
 #include <stdio.h>
 // ...
   \end{minted}
-  is normal.\footnote{C/C++'s \texttt{\#include} statement seldom comes anywhere but the beginning of files.} This is not likely to interfere substantially with the identification process, however, the abnormal way in which we group the files is a point worthy of reflection and possible change.\todo{I can't really see this being an issue ever. But it might be something good to talk about and anyway I don't want to forget it. Hey August version of Erik going over this, what's up?}}
+  is normal.\footnote{C/C++'s \texttt{\#include} statement seldom comes anywhere but the beginning of files.} This is not likely to interfere substantially with the identification process, however, the abnormal way in which we group the files is a point worthy of reflection and possible change.}
+  \item{In addition to the weights on connections, biases can be configured to }
+
 \end{itemize}
+
 
 \section{Appendices}
 
