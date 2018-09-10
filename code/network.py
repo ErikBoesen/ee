@@ -15,30 +15,18 @@ class Reader:
 
 languages = ["Java", "C", "C++", "Python", "C-sharp", "Visual-Basic-.NET", "PHP", "JavaScript", "SQL", "Ruby"]
 
-
 readers = [Reader(language) for language in languages]
 
-vector<int> topology;
-int input_size = TRACK_END - TRACK_START + 1;
-// Input layer
-topology.push_back(input_size);
-// Hidden layers
-while (input_size > NUM_LANGS) {
-cout << "Making a hidden layer of size " << input_size << endl;
-input_size *= 0.75;
-cout << "input_size is now " << input_size << endl;
-topology.push_back(input_size);
-}
-// Output Layer
-topology.push_back(NUM_LANGS);
-Net network(topology);
+input_dim = TRACK_END - TRACK_START + 1;
 
-vector<double> rates, targets, results;
+model = Sequential()
+model.add(Dense(48, input_dim=input_dim, activation='relu'))
+model.add(Dense(24, activation='relu'))
+model.add(Dense(NUM_LANGS, activation='sigmoid'))
 
-// Trim decimals
-cout << fixed << setprecision(0);
-
-for (int epoch = 0; epoch < TRAINING_EPOCHS; ++epoch) {
+model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+for epoch in range(TRAINING_EPOCHS):
+    for lang_ind in range(NUM_LANGS):
         for (int lang_ind = 0; lang_ind < NUM_LANGS; ++lang_ind) {
                 // Get new input data and feed it forward
                 readers[lang_ind]->get_rates(rates);
@@ -69,19 +57,9 @@ for (int epoch = 0; epoch < TRAINING_EPOCHS; ++epoch) {
         }
 }
 
-// Isn't it gorgeous?
-for (Reader *r : readers) delete r;
 
 
 
 
 
 
-
-
-model = Sequential()
-model.add(Dense(12, input_dim=, activation='relu'))
-model.add(Dense(8, activation='relu'))
-model.add(Dense(1, activation='sigmoid'))
-
-model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
