@@ -224,3 +224,6 @@ TSWLatexianTemp*
 
 # Environment
 .DS_Store
+
+# Training data
+*.csv
