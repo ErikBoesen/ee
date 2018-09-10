@@ -3,7 +3,7 @@ url=https://github.com/acmeism/RosettaCodeData
 repo=/tmp/RosettaCodeData
 languages=("Java" "C" "C++" "Python" "C-sharp"
            "Visual-Basic-.NET" "PHP" "JavaScript"
-           "SQL" "Ruby")
+           "Ruby" "R")  # SQL is excluded
 
 if [ ! -e $repo ]; then
     git clone $url $repo
