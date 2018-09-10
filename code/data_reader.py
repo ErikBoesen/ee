@@ -4,7 +4,7 @@ TRACK_START = 32
 TRACK_END = 126
 
 NUM_LANGS = 10
-EPOCHS = 10  # More epochs would be ideal.
+EPOCHS = 25  # More epochs would be ideal. SQL does not have many solutions on RosettaCode.
 N = 1000
 languages = ["Java", "C", "C++", "Python", "C-sharp", "Visual-Basic-.NET", "PHP", "JavaScript", "SQL", "Ruby"]
 
@@ -20,6 +20,10 @@ for epoch in range(EPOCHS):
             if TRACK_START <= ord(c) < TRACK_END:
                 rates[ord(c) - TRACK_START] += 1
         print(block)
+        if not block:
+            import sys
+            print('Not enough data for ' + languages[lang_ind])
+            sys.exit(1)
         print(rates)
         # TODO: Actually divide the rates!
         lang_binaries = [0] * NUM_LANGS
