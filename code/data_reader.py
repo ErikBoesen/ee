@@ -4,7 +4,7 @@ TRACK_START = 32
 TRACK_END = 126
 
 NUM_LANGS = 10
-EPOCHS = 1000
+EPOCHS = 10  # More epochs would be ideal.
 N = 1000
 languages = ["Java", "C", "C++", "Python", "C-sharp", "Visual-Basic-.NET", "PHP", "JavaScript", "SQL", "Ruby"]
 
@@ -22,6 +22,9 @@ for epoch in range(EPOCHS):
         print(block)
         print(rates)
         # TODO: Actually divide the rates!
+        lang_binaries = [0] * NUM_LANGS
+        lang_binaries[lang_ind] = 1
+        data.append(rates + lang_binaries)
 
 
 with open('data.csv', 'w', newline='') as f:
