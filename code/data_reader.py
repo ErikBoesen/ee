@@ -24,8 +24,9 @@ for epoch in range(EPOCHS):
             import sys
             print('Not enough data for ' + languages[lang_ind])
             sys.exit(1)
+        # Turn rates into rates rather than counts
+        rates = [rate / N for rate in rates]
         print(rates)
-        # TODO: Actually divide the rates!
         lang_binaries = [0] * NUM_LANGS
         lang_binaries[lang_ind] = 1
         data.append(rates + lang_binaries)
