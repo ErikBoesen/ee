@@ -13,10 +13,7 @@ TRACK_END = 126
 NUM_LANGS = 10
 TRAINING_EPOCHS = 25  # Again, this is the largest we can do with SQL.
 
-class Reader:
-    pass
-
-languages = ["Java", "C", "C++", "Python", "C-sharp", "Visual-Basic-.NET", "PHP", "JavaScript", "SQL", "Ruby"]
+languages = ["Java", "C", "C++", "Python", "C-sharp", "Visual-Basic-.NET", "PHP", "JavaScript", "Ruby", "R"]
 
 input_dim = TRACK_END - TRACK_START;
 
