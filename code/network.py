@@ -11,7 +11,7 @@ TRACK_START = 32
 TRACK_END = 126
 
 NUM_LANGS = 10
-TRAINING_EPOCHS = 25  # Again, this is the largest we can do with SQL.
+TRAINING_EPOCHS = 100
 
 languages = ["Java", "C", "C++", "Python", "C-sharp", "Visual-Basic-.NET", "PHP", "JavaScript", "Ruby", "R"]
 
@@ -26,6 +26,7 @@ print(Y)
 
 
 model = Sequential()
+# Significantly higher success when using RELU than sigmoid.
 model.add(Dense(48, input_dim=input_dim, activation='relu'))
 model.add(Dense(24, activation='relu'))
 model.add(Dense(NUM_LANGS, activation='sigmoid'))
