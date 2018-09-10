@@ -39,4 +39,4 @@ model.compile(loss='categorical_crossentropy', optimizer='nadam', metrics=['accu
 model.fit(X_train, Y_train, epochs=TRAINING_EPOCHS, batch_size=NUM_LANGS)
 
 scores = model.evaluate(X_test, Y_test)
-print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
+print("Accuracy: %.2f%%" % (scores[1] * 100))
