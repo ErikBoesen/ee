@@ -35,6 +35,6 @@ for epoch in range(EPOCHS):
 with open('data.csv', 'w', newline='') as f:
     writer = csv.writer(f)
     # Create header row
-    writer.writerow([chr(c) for c in range(TRACK_START, TRACK_END)] + languages)
+    #writer.writerow([chr(c) for c in range(TRACK_START, TRACK_END)] + languages)
     for row in data:
         writer.writerow(row)
