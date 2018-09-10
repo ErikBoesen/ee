@@ -1,5 +1,5 @@
 #!/bin/bash
-N=8
+N=1000
 line_total=0
 char_total=0
 for language in $(ls languages); do
