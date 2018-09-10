@@ -19,6 +19,8 @@ languages = ["Java", "C", "C++", "Python", "C-sharp", "Visual-Basic-.NET", "PHP"
 input_dim = TRACK_END - TRACK_START;
 
 dataset = np.loadtxt('data.csv', delimiter=',')
+# Randomize order of training samples
+np.random.shuffle(dataset)
 
 X = dataset[:,0:input_dim]
 Y = dataset[:,input_dim:input_dim+NUM_LANGS]
