@@ -44,11 +44,15 @@ import pydot_ng as pydot
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from matplotlib.pyplot import figure
 x = [i for i in range(len(fit.history['acc']))]
-#sns.relplot(x, fit.history['acc'])
+plt.grid(True)
+plt.subplot(1, 2, 1)
 plt.plot(x, fit.history['acc'])
-plt.plot(x, fit.history['loss'])
 plt.xlabel('epoch')
 plt.ylabel('accuracy')
-plt.grid(True)
+plt.subplot(1, 2, 2)
+plt.plot(x, fit.history['loss'])
+plt.xlabel('epoch')
+plt.ylabel('loss')
 plt.savefig('history.png')
