@@ -109,14 +109,16 @@ net/.style={matrix of nodes, nodes={draw, circle, inner sep=8pt}, nodes in empty
   |[plain]| & \\
 & |[plain]| \\    };
 \foreach \ai [count=\mi ]in {2,4,...,10}
-\draw[<-] (mat-\ai-1) -- node[left,1cm] {$\xi_\mi$} +(-1cm,0);
+% TODO: Figure out how to actually use TIKZ
+\node[circle,1.2cm] (mat-\ai-1) at (-4.25,-1.68*\mi+3.9) {$\xi_\mi$} +(0,0);
+
 \foreach \ai in {2,4,...,10}
 {\foreach \aii in {3,6,9}
   \draw[->] (mat-\ai-1) -- (mat-\aii-2);
 }
 \foreach \ai in {3,6,9}
   \draw[->] (mat-\ai-2) -- (mat-6-3);
-\draw[->] (mat-6-3) -- node[above] {Ouput} +(2cm,0);
+  \draw[->] (mat-6-3) -- node[above] {$\mathcal{O}$} +(2cm,0);
 \end{tikzpicture}
 \end{center}
 
