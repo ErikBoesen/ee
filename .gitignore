@@ -227,3 +227,6 @@ TSWLatexianTemp*
 
 # Training data
 *.csv
+
+# Output graphs
+code/*.png
