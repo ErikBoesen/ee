@@ -40,7 +40,6 @@ fit = model.fit(X_train, Y_train, epochs=int(TRAINING_EPOCHS * 0.8), batch_size=
 scores = model.evaluate(X_test, Y_test)
 print(scores)
 print("Accuracy: %.2f%%" % (scores[1] * 100))
-import pydot_ng as pydot
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
