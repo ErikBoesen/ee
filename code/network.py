@@ -37,7 +37,6 @@ model.add(Dense(NUM_LANGS, activation='sigmoid'))
 model.compile(loss='categorical_crossentropy', optimizer='nadam', metrics=['accuracy'])
 
 fit = model.fit(X_train, Y_train, epochs=int(TRAINING_EPOCHS * 0.8), batch_size=NUM_LANGS)
-fit = model.fit(X_test, Y_test, epochs=int(TRAINING_EPOCHS * 0.2), batch_size=NUM_LANGS)
 scores = model.evaluate(X_test, Y_test)
 print(scores)
 print("Accuracy: %.2f%%" % (scores[1] * 100))
@@ -51,5 +50,3 @@ plt.plot(x, fit.history['acc'])
 plt.xlabel('epoch')
 plt.ylabel('accuracy')
 plt.savefig('history.png')
-from keras.utils.vis_utils import plot_model
-plot_model(model, to_file='model_plot.png', show_shapes=True, show_layer_names=True)
