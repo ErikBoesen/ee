@@ -46,6 +46,7 @@ import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
 x = [i for i in range(len(fit.history['acc']))]
 plt.grid(True)
+figure(figsize=(8,3))
 plt.subplot(1, 2, 1)
 plt.plot(x, fit.history['acc'])
 plt.xlabel('epoch')
