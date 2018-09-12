@@ -47,6 +47,8 @@ import matplotlib.pyplot as plt
 x = [i for i in range(len(fit.history['acc']))]
 #sns.relplot(x, fit.history['acc'])
 plt.plot(x, fit.history['acc'])
+plt.plot(x, fit.history['loss'])
 plt.xlabel('epoch')
 plt.ylabel('accuracy')
+plt.grid(True)
 plt.savefig('history.png')
