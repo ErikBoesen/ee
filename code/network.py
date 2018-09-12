@@ -36,7 +36,33 @@ model.add(Dense(NUM_LANGS, activation='sigmoid'))
 
 model.compile(loss='categorical_crossentropy', optimizer='nadam', metrics=['accuracy'])
 
-model.fit(X_train, Y_train, epochs=TRAINING_EPOCHS, batch_size=NUM_LANGS)
+history = model.fit(X_train, Y_train, epochs=TRAINING_EPOCHS, batch_size=NUM_LANGS)
 
 scores = model.evaluate(X_test, Y_test)
 print("Accuracy: %.2f%%" % (scores[1] * 100))
+print(history.history.keys())
+
+
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import pylab
+
+print(history.history)
+# summarize history for accuracy
+plt.plot(history.history['acc'])
+plt.title('model accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc='upper left')
+plt.show()
+pylab.show()
+
+# summarize history for loss
+plt.plot(history.history['loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc='upper left')
+plt.show()
+pylab.show()
