@@ -85,12 +85,12 @@ start chain=2,node distance=13mm
 
 Understanding now the basic logic behind individual neurons, we turn to the the architecture of a full neural network. The most basic network format, known frequently as ``feed forward,'' contains three types of layers, each of which is a vector of neurons, each taking input from every neuron in the previous layer without interacting with the rest of the layer.
 \begin{itemize}
-\item{The first layer is the \textbf{input layer}. Input data is fed directly into this layer, and the number of neurons typically is the same as the number of possible input values.}
-\item{Following the input layer comes at least one \textbf{hidden layer}. Networks with more than one layer are typically used for more complex problems, and are referred to as ``deep neural networks.'' The output values of the neurons in these layers are not necessarily returned to a user, rather, they are passed on to the following layer, which can be the output layer or another hidden layer.}
-\item{Neurons in the \textbf{output layer} return the output of the neural network. Note that traditionally, the activation function is implemented here as well, so basic feed forward networks are generally capable only of outputting a value in the range of the chosen activation function. In some problems, there will be only one output neuron giving a probability, from $0$ to $1$, of some relevant data point being true. Classification networks designed to distinguish between several categories of input typically use multiple neurons in the output layer giving the probabilities that the input fits into each group.}
+\item{The first layer is the \textbf{input layer}. Input data for the network's decision making process, which must be of a consistent size, is fed directly into this layer, and the number of neurons typically is the same as the number of possible input values.}
+\item{Following the input layer comes at least one \textbf{hidden layer}. Networks with more than one hidden layer are typically used for more complex problems, and are referred to as ``deep neural networks.'' The output values of the neurons in these layers are not necessarily returned to a user, rather, they are passed on to the following layer, which can be the output layer or another hidden layer.}
+\item{Neurons in the \textbf{output layer} return the output of the neural network. Note that traditionally, an activation function is implemented here as well, so basic feed forward networks are generally capable only of outputting a value in the range of the chosen activation function. In some problems, there will be only one output neuron giving a probability, from $0$ to $1$, of some relevant data point $f(x)$ being true. Classification networks designed to distinguish between several categories of input typically use multiple neurons in the output layer giving the probabilities that the input fits into each group.}
 \end{itemize}
 
-It may be useful to understand the structure of a neural network through a graphical example:
+It may be useful to understand the structure of a neural network through a graphical example \cite{neurondiagrams}, where $\xi_n$ represents a scalar input to the network and $\mathcal{0}$ its single output.
 \begin{center}
 \begin{tikzpicture}[
 plain/.style={draw=none, fill=none},
