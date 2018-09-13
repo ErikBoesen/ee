@@ -15,7 +15,7 @@ TRACK_END = 126
 NUM_LANGS = 10
 TRAINING_EPOCHS = 100
 
-languages = ["Java", "C", "C++", "Python", "C-sharp", "Visual-Basic-.NET", "PHP", "JavaScript", "Ruby", "R"]
+languages = ['Java', 'C', 'C++', 'Python', 'C-sharp', 'Visual-Basic-.NET', 'PHP', 'JavaScript', 'Ruby', 'R']
 
 input_dim = TRACK_END - TRACK_START;
 
@@ -40,7 +40,7 @@ model.compile(loss='categorical_crossentropy', optimizer='nadam', metrics=['accu
 fit = model.fit(X_train, Y_train, epochs=int(TRAINING_EPOCHS * 0.8), batch_size=NUM_LANGS)
 scores = model.evaluate(X_test, Y_test)
 print(scores)
-print("Accuracy: %.2f%%" % (scores[1] * 100))
+print('Accuracy: %.2f%%' % (scores[1] * 100))
 
 with open('history.json', 'w') as f:
     json.dump(fit.history, f)
