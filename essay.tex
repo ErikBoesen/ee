@@ -73,9 +73,11 @@ start chain=2,node distance=13mm
   \node[on chain=3] at (0,-1.5cm) (x3) {$\xi_3$};
   \node[on chain=3, label=below:Weights, join=by o-latex] (w3) {$\omega_3$};
 \end{scope}
+\node[label=above:\parbox{2cm}{\centering Bias \\ $b$}] at (sigma|-w1) (b) {};
 
 \draw[-latex] (w1) -- (sigma);
 \draw[-latex] (w3) -- (sigma);
+\draw[o-latex] (b) -- (sigma);
 
 \draw[decorate,decoration={brace,mirror}] (x1.north west) -- node[left=10pt] {Inputs} (x3.south west);
 \end{tikzpicture}
