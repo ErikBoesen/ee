@@ -228,5 +228,6 @@ TSWLatexianTemp*
 # Training data
 *.csv
 
-# Output graphs
+# Output graphs and training history
 code/*.png
+code/*.json
