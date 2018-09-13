@@ -2,6 +2,7 @@ from keras.models import Sequential
 from keras.layers import Dense
 import numpy as np
 from sklearn.model_selection import train_test_split
+import json
 
 
 # fix random seed for reproducibility
@@ -40,20 +41,6 @@ fit = model.fit(X_train, Y_train, epochs=int(TRAINING_EPOCHS * 0.8), batch_size=
 scores = model.evaluate(X_test, Y_test)
 print(scores)
 print("Accuracy: %.2f%%" % (scores[1] * 100))
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-from matplotlib.pyplot import figure
-x = [i for i in range(len(fit.history['acc']))]
-figure(figsize=(8,3))
-plt.subplot(1, 2, 1)
-plt.grid(True)
-plt.plot(x, fit.history['acc'], color='#4ead78')
-plt.xlabel('epoch')
-plt.ylabel('accuracy')
-plt.subplot(1, 2, 2)
-plt.grid(True)
-plt.plot(x, fit.history['loss'], color='#d12727')
-plt.xlabel('epoch')
-plt.ylabel('loss')
-plt.savefig('history.png', bbox_inches='tight')
+
+with open('history.json', 'w') as f:
+    json.dump(fit.history, f)
