@@ -233,7 +233,7 @@ We can visualize the evolution of our network throughout the training process by
     \includegraphics{history}
 \end{center}
 
-Random guessing would yield an accuracy around 10\%, so this accuracy is relatively impressive.
+Random guessing would yield an accuracy around 10\%, so the rate our network was able to attain is relatively impressive.
 
 \subsection{Future questions and improvements}
 The network certainly is far from perfect, and future research is needed to refine the techniques expressed above. Concretely, a few opportunities for improvement are evident.
@@ -260,20 +260,23 @@ Training and testing data for our neural network is retrieved from \url{http://r
 Data is retrieved from an index on the code-sharing website GitHub\cite{rosettacodegh} using the script \texttt{download.sh}:
 \inputminted{bash}{code/data/download.sh}
 
+We used a simple Python script, \texttt{data\_reader.py}, to read raw text input and output a CSV file of training data for easy reading:
+\inputminted{cpp}{code/data\_reader.py}
+
 \label{sec:appendix_b}
-\subsection{Appendix B: Compilation and System Constants}
-All C++ code was compiled on an Amazon Web Services EC2 Instance running SUSE Linux Enterprise Server 12 (x86\_64). The package \texttt{gcc-c++} was installed on the system, and g++ 7.2.1 20171005 was used for compilation. Some testing was also performed on Mac OS X 10.11.6.
+\subsection{Appendix B: Network Code}
+All code for reading training data and performing training, backpropogation, and testing can be found in a file \texttt{network.py}.
+\inputminted{python}{code/network.py}
+
+All experimentation code was run on a desktop PC with 8GB RAM, an Intel Core i5-4460 3.20GHz CPU, and Arch Linux x86\_64.
 
 \label{sec:appendix_c}
-\subsection{Appendix C: Reader code}
-We use a simple header \texttt{reader.hpp} to define the class and methods of our reader:
-\inputminted{cpp}{code/reader.hpp}
-Then, we implement all methods in \texttt{reader.cpp}:
-\inputminted{cpp}{code/reader.cpp}
-\todo{This code doesn't quite do everything we need}
+\subsection{Appendix C: Graphing Code}
+Character frequency analysis graphs were generated with the following code:
+\inputminted{python}{"code/data_graphs.py"}
+Graphs of network performance were generated with this code:
+\inputminted{python}{code/graphs.py}
 
-The following \texttt{Makefile} was used in all instances:
-\inputminted{makefile}{code/Makefile}
 
 \section{Acknowledgements}
 I would like to thank Mr. William Snyder for serving as the advisor for this Extended Essay. Ms. Jamie Sample was the Extended Essay Coordinator for the GMHS IB students within the Class of 2019. I'd also like to extend my regards to James Weichert for fighting through his essay on a similar topic alongside me and for pointing me toward numerous terrific resources for grasping the mathematical technique behind neural networks. Finally, I'd like to give my most heartfelt gratitude to Stack Overflow, without which I would never have reached the point of attempting a Computer Science EE in the first place.
