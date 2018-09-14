@@ -143,7 +143,7 @@ $$\frac{\partial{C}}{\partial{\omega}}=\frac{ \partial{C} }{ \partial{\mathcal{O
                                         \frac{ \partial{\mathcal{O}} }{ \partial{z} }
                                          \frac{ \partial{z} }{ \partial{\omega} }$$
 
-Where $h$ represents this final hidden layer's index and $z_h$ the weighted sum, plus the bias, of the neuron's inputs before application of the activation function.
+Where $z_h$ represents the weighted sum, plus the bias, of the neuron's inputs before application of the activation function.
 
 Now we must compute an actual equation to find $\frac{\partial{C}}{\partial{\omega_h}}$. This is relatively simple as we know most of the equations we must differentiate to form the components of the above expansion.
 
@@ -161,6 +161,8 @@ The rate of change of the cost function relative to a bias term, $\frac{\partial
 $$\frac{\partial{z}}{\partial{b}}(\omega\mathcal{O}_h+b)=1$$
 $$\frac{\partial{C}}{\partial{b}}=\sigma(z)(1-\sigma(z))\mathcal{O}_h$$
 
+\todo{FINISH}
+During backpropogation, these derivatives can be used in the ``gradient descent algorithm'' to move downhill in $n$ dimensions toward a local minimum of the cost function, bringing the network closer to correctness.
 
 \section{Programming Language Identification}
 \subsection{Motivations}
