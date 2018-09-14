@@ -6,7 +6,7 @@ TRACK_END = 126
 NUM_LANGS = 10
 EPOCHS = 100  # More epochs would be ideal. Visual Basic .NET does not have many solutions on RosettaCode.
 N = 1000
-languages = ["Java", "C", "C++", "Python", "C-sharp", "Visual-Basic-.NET", "PHP", "JavaScript", "Ruby", "R"]
+languages = ['Java', 'C', 'C++', 'Python', 'C-sharp', 'Visual-Basic-.NET', 'PHP', 'JavaScript', 'Ruby', 'R']
 
 text = [open('data/languages/' + language).read() for language in languages]
 data = []
