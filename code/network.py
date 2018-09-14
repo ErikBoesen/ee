@@ -39,7 +39,9 @@ model.compile(loss='categorical_crossentropy', optimizer='nadam', metrics=['accu
 
 fit = model.fit(X_train, Y_train, epochs=int(TRAINING_EPOCHS * 0.8), batch_size=NUM_LANGS)
 scores = model.evaluate(X_test, Y_test)
+incorrects = np.nonzero(model.predict_classes(X_test).reshape((-1,)) != y_test)
 print(scores)
+print(incorrects)
 print('Accuracy: %.2f%%' % (scores[1] * 100))
 
 with open('history.json', 'w') as f:
