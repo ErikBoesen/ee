@@ -179,9 +179,9 @@ While it's clearly not always necessary to recognize a language by its raw synta
   \begin{itemize}
     \item{\texttt{.sh} is sometimes used for many different variations of shell script, even though some of those varieties (like \texttt{tcsh}) are syntatically incompatible.}
     \item{The extension \texttt{.h} is used for header files in C, C++, Objective-C, Objective-C++, and other C-like languages.\footnote{Note that the extensions \texttt{.hpp} and \texttt{.hh} exist for C++ headers. However, this standard is inconsistently applied, and \texttt{.h} is commonly used for all these languages. Additionally, there are still conflicts evident with Objective-C and Objective-C++. More information can be found regarding the relevant standards and their implementation at \cite{atomh}.}}
-    \item{\todo{Start this with a sentence describing these sorts of events}Some languages, like Ruby and Python, are used within HTML templates in some web frameworks. Flask\todo{Cite}, a Python web app microframework, uses the Jinja2 templating system to perform programatic logic within an HTML file, which maintains its traditional \texttt{.html} file extension.}
+    \item{\todo{Start this with a sentence describing these sorts of events}Some languages, like Ruby and Python, are used within HTML templates in some web frameworks. Flask \cite{flaskwebsite}, a Python web app microframework, uses the Jinja2 templating system to perform programatic logic within an HTML file, which maintains its traditional \texttt{.html} file extension.}
   \end{itemize}
-  In these instance, it's impossible to tell from a file's extension what language is being used: indeed, an educated guess may even be straightforwardly wrong.}
+  In these instances, it's impossible to tell from a file's extension what language is being used: indeed, an educated guess may even be straightforwardly wrong.}
   \item{During programming competitions or other instances where code is written directly into an online input field, it may be useful to automatically determine the language in which a participant is writing their solution to a problem, rather than forcing the user to input their choice of language manually.}
 \end{itemize}
 For human observers with experience in programming, recognizing the language of a piece of code is a trivial task. As is the case with countless machine learning problems, to do so in an automated fashion is more difficult. Here we will use a feed-forward neural network. There exists no scientific literature on this topic. The only evident instance we could locate of such a task being completed is a single blog post from 2016 \cite{proglangidmedium}.
@@ -194,7 +194,6 @@ In order to illustrate the concepts above described, we implement a simple feed-
 \subsection{Training Data}
 To train our network, we use dumps of code in each programming language obtained from the ``programming chrestomathy'' website RosettaCode \cite{rosettacode}. The website provides diverse solutions to a wide variety of programming problems in hundreds of different languages. Because it has such varied code written in the languages we've selected from a diverse group of programmers written with many different styles, it is a perfect source of training data in the languages we select. Training on too-homogenous data could negatively impact our network's ability to process code samples unlike those it has seen before. Code used to download and build training and testing data may be found in  \hyperref[sec:appendix_a]{Appendix A}.
 \subsection{Platform}
-%All following code is implemented with C++ and was compiled with GCC through the command line \texttt{g++} program. More compilation specifics can be found in \hyperref[sec:appendix_b]{Appendix B}.
 The network was implemented in the Python programming language using the library Keras, which abstracts neural network creation \cite{keras}.
 
 Basic feed-forward neural networks are unable to handle input vectors of variable sizes. Because of this, it's not possible for us to input whole files of code at once and recieve a result. We must instead find a way of breaking up code files into bite-sized sections to use as training examples.
@@ -209,7 +208,9 @@ Instead, we will create input vectors by reading in $1000$-character strings of 
 
 To build our network, we chain together four layers. The first (input) layer, with 94 total neurons. This number is based off the range of ASCII characters we wish our to regard in making its decisions \cite{asciitable}. Characters before point 32 (Space) are used for various purposes such as connection maintenance and terminal life control and are not useful for identification of language. Range 32-126 inclusive contains punctuation, Western Arabic digits, and both uppercase and lowercase letters. While characters outside this range may appear in code from time to time, they are unlikely to be significant to the identity of a code document, and as such will be ignored.
 
-\includegraphics{asciitable}
+\begin{center}
+    \includegraphics{asciitable}
+\end{center}
 
 Each character in this relevant range is counted within each training example of $1000$ characters. Input neurons recieve a number in the range $[0,1]$ and use this data in forward propogation.
 
@@ -222,7 +223,9 @@ Though our network's predictions are not flawless, the network structure we prop
 
 We can visualize the evolution of our network throughout the training process by looking to its accuracy and loss (cost function) during the training process:
 
-\includegraphics{history}
+\begin{center}
+    \includegraphics{history}
+\end{center}
 
 \section{Future questions and improvements}
 The network certainly is far from perfect, and future research is needed to refine the techniques expressed above. Concretely, a few opportunities for improvement are evident.
