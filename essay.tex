@@ -138,12 +138,21 @@ $$\sigma(x)=\frac{1}{1+e^-x}$$
 We can derive:
 $$\sigma'(x)=\frac{e^-x}{(1+e^-x)^2}=\frac{(1+e^-x)-1}{(1+e^-x)^2}=\frac{1+e^-x}{(1+e^-x)^2}-\left(\frac{1}{1+e^-x}\right)^2=\sigma(x)-\sigma(x)^2=\sigma(x)(1-\sigma(x))$$
 
-Now, recall that we need to find, for each weight $\omega$, $\frac{\partial{C}}{\partial{\omega}}$. For the sake of simplicity, we will need to split this partial derivative into a series of the same. This expansion requires us to make use of Calculus' chain rule.
+Now, recall that we need to find, for each weight $\omega$, $\frac{\partial{C}}{\partial{\omega}}$. For the sake of simplicity, we will need to split this partial derivative into a series of the same. This expansion requires us to make use of calculus' chain rule.
 $$\frac{\partial{C}}{\partial{\omega_h}}=\frac{ \partial{C} }{ \partial{\mathcal{O}_h} }
                                          \frac{ \partial{\mathcal{O}_h} }{ \partial{z_h} }
                                          \frac{ \partial{z_h} }{ \partial{\omega_h} }$$
 
+\todo{I DON'T THINK WE WANT H}
 Where $h$ represents this final hidden layer's index and $z_h$ the weighted sum, plus the bias, of the neuron's inputs before application of the activation function.
+
+Now we must compute an actual equation to find $\frac{\partial{C}}{\partial{\omega_h}}$. This is relatively simple as we know most of the equations we must differentiate to form the components of the above expansion.
+
+$$\frac{\partial{C}}{\partial{\mathcal{O}}}(\mathcal{O}-t)^2=2(\mathcal{O}-t)$$
+$$\frac{\partial{\mathcal{O}}}{\partial{z}}\sigma(z)=\sigma'(z)=\sigma(z)(1-\sigma(z))$$
+$$\frac{\partial{z}}{\partial{\omega}}(\omega\mathcal{O}_h+b)=\mathcal{O}_h$$
+
+Where $t$ is the target output of the neuron, provided from an outside source during training.
 
 \section{Programming Language Identification}
 \subsection{Motivations}
