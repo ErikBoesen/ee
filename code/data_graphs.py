@@ -26,7 +26,7 @@ for lang_ind in range(NUM_LANGS):
     plt.subplots_adjust(top=3, bottom=0.5)
     plt.grid(True)
     plt.title(languages[lang_ind])
-    plt.xlim(TRACK_START, TRACK_END)
+    plt.xlim(TRACK_START, TRACK_END + 1)
     plt.ylim(0, 0.07)
     plt.bar(x, rates, color=colors[lang_ind], align='edge')
     plt.bar(x, rates, color=colors[lang_ind], align='center', width=0.3)
