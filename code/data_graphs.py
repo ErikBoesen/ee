@@ -28,7 +28,8 @@ for lang_ind in range(NUM_LANGS):
     plt.title(languages[lang_ind])
     plt.xlim(TRACK_START, TRACK_END)
     plt.ylim(0, 0.07)
-    plt.bar(x, rates, color=colors[lang_ind])
+    plt.bar(x, rates, color=colors[lang_ind], align='edge')
+    plt.bar(x, rates, color=colors[lang_ind], align='center')
     plt.xlabel('characters')
     plt.ylabel('frequency')
 
