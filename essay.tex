@@ -184,34 +184,34 @@ While it's clearly not always necessary to recognize a language by its raw synta
   In these instance, it's impossible to tell from a file's extension what language is being used: indeed, an educated guess may even be straightforwardly wrong.}
   \item{During programming competitions or other instances where code is written directly into an online input field, it may be useful to automatically determine the language in which a participant is writing their solution to a problem, rather than forcing the user to input their choice of language manually.}
 \end{itemize}
-For human observers with experience in programming, recognizing the language of a piece of code is a trivial task. To perform such a task in an automated fashion, however, is more difficult, and so is best performed with machine learning techniques. Here, as aforementioned, we will use a feed-forward neural network. There exists no scientific literature on this topic. The only evident instance we could locate of such a task being completed is a single blog post from 2016 \cite{proglangidmedium}.
+For human observers with experience in programming, recognizing the language of a piece of code is a trivial task. As is the case with countless machine learning problems, to do so in an automated fashion is more difficult. Here we will use a feed-forward neural network. There exists no scientific literature on this topic. The only evident instance we could locate of such a task being completed is a single blog post from 2016 \cite{proglangidmedium}.
 
-We will take several cues from preceding research on recognition of textual language. While the task of programming language syntax recognition is not identical to identification of natural human languages, we can borrow some ideas from aforementioned studies.
+We will take several cues from preceding research on recognition of textual language. While the task of programming language syntax recognition is not identical to identification of natural human languages, we can borrow some ideas from such research.
 
 \section{Implementation}
 In order to illustrate the concepts above described, we implement a simple feed-forward neural network to learn from training samples.
 
 \subsection{Training Data}
-To train our network, we use dumps of code in each programming language obtained from the ``programming chrestomathy'' website RosettaCode \cite{rosettacode}. The website provides diverse solutions to a wide variety of programming problems in hundreds of different languages. Because it has such varied code written in the languages we've selected from diverse programmers written with many different styles, it is a perfect source of training data in the languages we select. Training on too-homogenous data could negatively impact our network's ability to process code samples unlike those it has seen before. Code used to download and build training and testing data may be found in  \hyperref[sec:appendix_a]{Appendix A}.
+To train our network, we use dumps of code in each programming language obtained from the ``programming chrestomathy'' website RosettaCode \cite{rosettacode}. The website provides diverse solutions to a wide variety of programming problems in hundreds of different languages. Because it has such varied code written in the languages we've selected from a diverse group of programmers written with many different styles, it is a perfect source of training data in the languages we select. Training on too-homogenous data could negatively impact our network's ability to process code samples unlike those it has seen before. Code used to download and build training and testing data may be found in  \hyperref[sec:appendix_a]{Appendix A}.
 \subsection{Platform}
-All following code is implemented with C++ and was compiled with GCC through the command line \texttt{g++} program. More compilation specifics can be found in \hyperref[sec:appendix_b]{Appendix B}.
+%All following code is implemented with C++ and was compiled with GCC through the command line \texttt{g++} program. More compilation specifics can be found in \hyperref[sec:appendix_b]{Appendix B}.
+The network was implemented in the Python programming language.\todo{Think about this sentence...}
 
 Basic feed-forward neural networks are unable to handle input vectors of variable sizes. Because of this, it's not possible for us to input whole files of code at once and recieve a result. We must instead find a way of breaking up code files into bite-sized sections to use as training examples.
 
-Most research on natural language recognition, including \cite{langidstanford}, use $n$-grams of raw or processed text as input vectors. $n$-grams are perfect for such an application, as they allow the network to learn about patterns evident in word structure and alphabet choice and to standardize input vectors in a simplistic manner. However, for the problem of programming language classification, $n$-grams may not be the best solution. In initial trials using $4$- and $8$-grams of characters, the network failed to correctly choose the language of most training samples due to the ambiguity of many.
+Most research on natural language recognition, including \cite{langidstanford}, use $n$-grams of raw or processed text as input vectors. $n$-grams are perfect for such an application, as they allow the network to learn about patterns evident in word structure and alphabet choice and to standardize input vectors in a simplistic manner. However, for the problem of programming language classification, $n$-grams may not be the best solution. In initial trials using $4$- and $8$-grams of characters, the network failed to correctly choose the language of most training samples due to the ambiguity of most $n$-grams.
 
 From investigation of the samples where incorrect predictions were made, we found that most contained simple English text, written in in-code ``comments,'' or natural-language explanations of code written directly into the code document.
 
 Such an outcome is difficult to avoid when separating by $n$-grams. Short of artificially cleaning comments from source files in training and evaluation of new data, our network may become confused by excessive amounts of plain natural-language text which do not vary between programming languages.
 
-So, instead, we will create input vectors by reading in an $1000$-character string of code, and, rather than directly passing in character values, calculating character frequency relative to the total number of counted characters, and passing in this data as an input vector. Ideally, the network will recognize the relative unimportance of those characters which are less important to the identity of a piece of code, such as the alphanumeric characters, while relying more on indicators like semicolons or brackets.
+Instead, we will create input vectors by reading in $1000$-character strings of code, and, rather than directly passing in character values, calculating character frequency relative to the total number of counted characters, and passing in this data as an input vector. Ideally, the network will recognize the relative unimportance of those characters irrelevant to the identity of a piece of code, such as alphanumeric characters, while relying more on indicators like semicolons or brackets.
 
-We will implement a single neuron example as follows:
-\todo{Include neuron code without blowing up the document and boring people (i.e. only show the relevant parts and save the code for the appendices). Will worry about this in a bit.}
+To build our network, we chain together four layers. The first (input) layer, with $94$ total neurons. This number is based off the range of ASCII characters we wish our to regard in making its decisions \cite{asciitable}
 
-To build our network, we chain together six layers:
+\includegraphics{asciitable}
+
 \begin{enumerate}
-  \item{The first (input) layer will contain eight neurons, one for each character of our 8-grams.}
   \item{The second through fifth layer will be hidden layers.}
   \item{The output layer will contain 10 output neurons, expressing a probability ($[0..1]$) that the code is written in each of the 10 languages.}
 \end{enumerate}
