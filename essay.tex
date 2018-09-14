@@ -238,7 +238,7 @@ Random guessing would yield an accuracy around 10\%, so this accuracy is relativ
 \subsection{Future questions and improvements}
 The network certainly is far from perfect, and future research is needed to refine the techniques expressed above. Concretely, a few opportunities for improvement are evident.
 \begin{itemize}
-  \item{In order to simplify the process of reading data, we concatenate all training samples for each language into one file. This may lead to unpredictable behavior as, for example, the program might gain the impression that an $n$-gram such as
+  \item{In order to simplify the process of reading data, we concatenate all training samples for each language into one file. This may lead to unpredictable behavior as, for example, the program might gain the impression that code such as
   \begin{minted}{c}
 // ...
     return 0;
@@ -246,9 +246,8 @@ The network certainly is far from perfect, and future research is needed to refi
 #include <stdio.h>
 // ...
   \end{minted}
-  is normal.\footnote{C/C++'s \texttt{\#include} statement seldom comes anywhere but the beginning of files.} This is not likely to interfere substantially with the identification process, however, the abnormal way in which we group the files is a point worthy of reflection and possible change.}
-  \item{In addition to the weights on connections, biases can be configured to }
-
+  is normal.\footnote{C/C++'s \texttt{\#include} statement seldom comes anywhere but the beginning of files.} This is not likely to interfere substantially with the identification process. However, the abnormal way in which we group the files is a point worthy of reflection and possible change given that similar techniques to those used here would be useful in modern ``Generative Adversarial Networks,'' which depend on learned features of data to generate }
+  \item{In order to increase the accuracy of this network implementation as well as its speed, a user may wish to implement a hybrid identification system involving attempts to determine language identity from file extensions, notable keywords, etc., then using the neural network if the less resource-intensive identification strategies fail.}
 \end{itemize}
 
 
