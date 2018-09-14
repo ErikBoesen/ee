@@ -1,6 +1,7 @@
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from matplotlib.pyplot import figure
 
 TRACK_START = 32
 TRACK_END = 126
@@ -11,6 +12,7 @@ colors = ['#050f42', '#084c61', '#0d94a3', '#d34410', '#ff6e00', '#853037', '#ff
 
 text = [open('data/languages/' + language).read() for language in languages]
 x = list(range(TRACK_END - TRACK_START))
+figure(figsize=(12, 4))
 for lang_ind in range(NUM_LANGS):
     rates = [0.0] * (TRACK_END - TRACK_START)
     # Go through each character in file, adding to the rates appropriately
@@ -20,7 +22,7 @@ for lang_ind in range(NUM_LANGS):
     # Turn rates into rates rather than counts
     rates = [rate / len(text[lang_ind]) for rate in rates]
     print(rates)
-    plt.subplot(5, 2, lang_ind + 1)
+    plt.subplot(2, 5, lang_ind + 1)
     plt.grid(True)
     plt.title(languages[lang_ind])
     plt.plot(x, rates, color=colors[lang_ind])
