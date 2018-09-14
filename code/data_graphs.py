@@ -33,4 +33,4 @@ for lang_ind in range(NUM_LANGS):
     plt.xlabel('characters')
     plt.ylabel('frequency')
 
-plt.savefig('frequencies.png', bbox_inches='tight')
+plt.savefig('../images/frequencies.png', bbox_inches='tight')
