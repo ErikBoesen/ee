@@ -22,13 +22,13 @@ for lang_ind in range(NUM_LANGS):
     # Turn rates into rates rather than counts
     rates = [rate / len(text[lang_ind]) for rate in rates]
     print(rates)
-    plt.subplot(2, 5, lang_ind + 1)
+    plt.subplot(2, 5, lang_ind + 1)#, sharex='col', sharey='row')
     plt.subplots_adjust(top=3, bottom=0.5)
     plt.grid(True)
     plt.title(languages[lang_ind])
     plt.xlim(TRACK_START, TRACK_END)
     plt.ylim(0, 0.07)
-    plt.plot(x, rates, color=colors[lang_ind])
+    plt.bar(x, rates, color=colors[lang_ind])
     plt.xlabel('characters')
     plt.ylabel('frequency')
 
