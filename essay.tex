@@ -207,26 +207,15 @@ Such an outcome is difficult to avoid when separating by $n$-grams. Short of art
 
 Instead, we will create input vectors by reading in $1000$-character strings of code, and, rather than directly passing in character values, calculating character frequency relative to the total number of counted characters, and passing in this data as an input vector. Ideally, the network will recognize the relative unimportance of those characters irrelevant to the identity of a piece of code, such as alphanumeric characters, while relying more on indicators like semicolons or brackets.
 
-To build our network, we chain together four layers. The first (input) layer, with $94$ total neurons. This number is based off the range of ASCII characters we wish our to regard in making its decisions \cite{asciitable}
+To build our network, we chain together four layers. The first (input) layer, with 94 total neurons. This number is based off the range of ASCII characters we wish our to regard in making its decisions \cite{asciitable}. Characters before point 32 (Space) are used for various purposes such as connection maintenance and terminal life control and are not useful for identification of language. Range 32-126 inclusive contains punctuation, Western Arabic digits, and both uppercase and lowercase letters. While characters outside this range may appear in code from time to time, they are unlikely to be significant to the identity of a code document, and as such will be ignored.
 
 \includegraphics{asciitable}
 
-\begin{enumerate}
-  \item{The second through fifth layer will be hidden layers.}
-  \item{The output layer will contain 10 output neurons, expressing a probability ($[0..1]$) that the code is written in each of the 10 languages.}
-\end{enumerate}
+Each character in this relevant range is counted within each training example of $1000$ characters. Input neurons recieve a number in the range $[0,1]$ and use this data in forward propogation.
 
-For each training example, we perform the following steps:
-\begin{enumerate}
-  \item{Fetch an example in the next language}
-  \item{Pass that example into our neural network and feed forward.}
-  \item{Retrieve the network's outputs.}
-  \item{Ask the \texttt{Reader} \todo{or just figure out based on which training example this is what language the sample is actually in} in what language the source document was truly written.}
-  \item{Setting the correct language's output neuron to 1 and others to 0, backpropogate and adjust weights\todo{And biases}.}
-  \item{Log diagnostic information and inform user of training progress.}
-\end{enumerate}
-Or, expressed as code:
-\todo{Insert training code}
+The network contains two hidden layers of size 48 and 24 neurons. These sizes are relatively arbitrary; training would likely still succeed with other hidden layer sizes.\todo{Explain this better?}
+
+The output layer will contain 10 output neurons, expressing a probability ($[0..1]$) that the code is written in each of the 10 languages.
 
 \section{Results}
 Though our network's predictions are not flawless nor anywhere as impressive as those an experienced human could produce, the network structure we propose is able to make predictions with an accuracy between 80 and 90\% depending on the layout of the data provided. To be specific, the network attained an accuracy of 84.00\%.
