@@ -129,7 +129,7 @@ To calculate error for an individual output neuron, the process is quite simple:
 $$E_n=t_n-\mathcal{O}_n$$
 For networks with multiple output neurons, we can expand this function to find the total error of the network during one epoch (training iteration) as follows. This equation is frequently referred to as the ``cost function.'' \cite{mediummlbasics}
 $$C=\frac{1}{2}\sum_n(t_n-\mathcal{O}_n)^2$$
-In the context of popular neuroscience (originally in \cite{neuronsfire}), the adage is frequently repeated that ``neurons which fire together, wire together.'' This concept persists in artificial neural networks as well as natural. Through backpropogation we can determine which weights and biases to increase or decrease and to what extent to do so. Through backpropogation, we recursively readjust weights proportionally to their influence on output so as to achieve a more accurate result.
+In the context of popular neuroscience (originally in \cite{neuronsfire}), the adage that ``neurons which fire together, wire together'' is frequently repeated. This concept persists in artificial neural networks as well as natural. Through backpropogation we can determine which weights and biases to increase or decrease and to what extent to do so. Through backpropogation, we recursively readjust weights proportionally to their influence on output so as to achieve a more accurate result.
 
 The essence of backpropogation lies in calculating $\frac{\partial{C}}{\partial{\omega}}$ for each network weight $\omega$ and $\frac{\partial{C}}{\partial{b}}$ for each network bias $b$. We need to know the extent to which shifts in each synapse weight and layer bias affects the final amount of error, so that we can adjust those weights and biases in order to train the network toward better accuracy.
 
@@ -143,9 +143,9 @@ $$\frac{\partial{C}}{\partial{\omega}}=\frac{ \partial{C} }{ \partial{\mathcal{O
                                         \frac{ \partial{\mathcal{O}} }{ \partial{z} }
                                          \frac{ \partial{z} }{ \partial{\omega} }$$
 
-Where $z_h$ represents the weighted sum, plus the bias, of the neuron's inputs before application of the activation function.
+Where $z$ represents the weighted sum, plus the bias, of the neuron's inputs before application of the activation function.
 
-Now we must compute an actual equation to find $\frac{\partial{C}}{\partial{\omega_h}}$. This is relatively simple as we know most of the equations we must differentiate to form the components of the above expansion.
+Now we must compute an actual equation to find $\frac{\partial{C}}{\partial{\omega_h}}$. This is relatively simple as we know most of the expressions we must differentiate to form the components of the above expansion.
 
 $$\frac{\partial{C}}{\partial{\mathcal{O}}}(\mathcal{O}-t)^2=2(\mathcal{O}-t)$$
 $$\frac{\partial{\mathcal{O}}}{\partial{z}}\sigma(z)=\sigma'(z)=\sigma(z)(1-\sigma(z))$$
@@ -195,7 +195,7 @@ In order to illustrate the concepts above described, we implement a simple feed-
 To train our network, we use dumps of code in each programming language obtained from the ``programming chrestomathy'' website RosettaCode \cite{rosettacode}. The website provides diverse solutions to a wide variety of programming problems in hundreds of different languages. Because it has such varied code written in the languages we've selected from a diverse group of programmers written with many different styles, it is a perfect source of training data in the languages we select. Training on too-homogenous data could negatively impact our network's ability to process code samples unlike those it has seen before. Code used to download and build training and testing data may be found in  \hyperref[sec:appendix_a]{Appendix A}.
 \subsection{Platform}
 %All following code is implemented with C++ and was compiled with GCC through the command line \texttt{g++} program. More compilation specifics can be found in \hyperref[sec:appendix_b]{Appendix B}.
-The network was implemented in the Python programming language.\todo{Think about this sentence...}
+The network was implemented in the Python programming language using the library Keras, which abstracts neural network creation.
 
 Basic feed-forward neural networks are unable to handle input vectors of variable sizes. Because of this, it's not possible for us to input whole files of code at once and recieve a result. We must instead find a way of breaking up code files into bite-sized sections to use as training examples.
 
