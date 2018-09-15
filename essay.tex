@@ -145,7 +145,7 @@ $$\frac{\partial{C}}{\partial{\omega}}=\frac{ \partial{C} }{ \partial{\mathcal{O
 
 Where $z$ represents the weighted sum, plus the bias, of the neuron's inputs before application of the activation function.
 
-Now we must compute an actual equation to find $\frac{\partial{C}}{\partial{\omega_h}}$. This is relatively simple as we know most of the expressions we must differentiate to form the components of the above expansion.
+Now we must compute an actual equation to find $\frac{\partial{C}}{\partial{\omega}}$. This is relatively simple as we know most of the expressions we must differentiate to form the components of the above expansion.
 
 $$\frac{\partial{C}}{\partial{\mathcal{O}}}(\mathcal{O}-t)^2=2(\mathcal{O}-t)$$
 $$\frac{\partial{\mathcal{O}}}{\partial{z}}\sigma(z)=\sigma'(z)=\sigma(z)(1-\sigma(z))$$
@@ -177,7 +177,7 @@ While it's clearly not always necessary to recognize a language by its raw synta
   \item{It is possible for a user to write an interpreted script, such as one in an interpreted derivative of Shell, without using a shebang or otherwise manually specifying the language of interpretation. In this case, the program loader would generally run the script automatically using the shell from which execution was performed \cite{shebang}. However, a text editor in which the program is being edited may lack practical means of determining which language is being used, giving the absence of connection to the running shell.}
   \item{Some file types/extensions are used by multiple languages. For example:
   \begin{itemize}
-    \item{\texttt{.sh} is sometimes used for many different variations of shell script, even though some of those varieties (like \texttt{tcsh}) are syntatically incompatible.}
+    \item{\texttt{.sh} is sometimes used for many different variations of shell script, even though some of those varieties (like \texttt{tcsh}) are syntactically incompatible.}
     \item{The extension \texttt{.h} is used for header files in C, C++, Objective-C, Objective-C++, and other C-like languages.\footnote{Note that the extensions \texttt{.hpp} and \texttt{.hh} exist for C++ headers. However, this standard is inconsistently applied, and \texttt{.h} is commonly used for all these languages. Additionally, there are still conflicts evident with Objective-C and Objective-C++. More information can be found regarding the relevant standards and their implementation at \cite{atomh}.}}
     \item{File extension may occasionally suggest misleading identifications for a file. Some languages, like Ruby and Python, are used within HTML templates in some web frameworks. For instance, Flask, a Python web app microframework, uses the Jinja2 templating system to perform programatic logic within an HTML file, which maintains its traditional \texttt{.html} file extension. In instances like these, it is simply not possible to identify the language of a file without analyzing its content, and attempting to avoid doing so will yield an incorrect answer.}
   \end{itemize}
@@ -203,12 +203,12 @@ From investigation of the samples where incorrect predictions were made, we foun
 
 Such an outcome is difficult to avoid when separating by $n$-grams. Short of artificially cleaning comments from source files in training and evaluation of new data, our network may become confused by excessive amounts of plain natural-language text which do not vary between programming languages.
 
-Instead, the network generates input vectors by reading in $1000$-character strings of code, and, rather than directly passing in character values, calculating character frequency relative to the total number of counted characters. Ideally, the network will recognize the relative unimportance of those characters irrelevant to the identity of a piece of code, such as alphanumeric characters, while relying more on indicators like semicolons or brackets. To illustrate, examine the distribution of characters within our 10 languages:
+Instead, the network generates input vectors by reading in $1000$-character strings of code, and, rather than directly passing in character values, calculates character frequency relative to the total number of counted characters. Ideally, the network will recognize the relative unimportance of those characters irrelevant to the identity of a piece of code, such as alphanumeric characters, while relying more on indicators like semicolons or brackets. To illustrate, examine the distribution of characters within our 10 languages:
 
 \begin{center}
     \makebox[\textwidth]{\includegraphics[width=\textwidth]{frequencies}}
 \end{center}
-The character distributions of these languages are visually similar in terms of general shape. Each has relatively consistent letter frequencies, with letters like e, a, and s occurring more often than other letters, alphabetical characters appearing far more frequently than most punctuation, and spaces universally appearing most frequently of any character. However, looking closely at the data shows some trends upon which our network will ideally learn to base its decisions. Ruby, for example, uses comparatively few parentheses, which is reasonable given that its syntax uses those characters sparingly\footnote{Ruby, among other causes, does not require use of parentheses to call functions. Where most languages follow the convention of \mintinline{python}{function(x)}, Ruby permits use of \mintinline{ruby}{function x} notation.} compared to other languages. Additionally, where curled braces (\texttt{\{\}}) dominate languages which use them to delineate code blocks. Python uses almost no semicolons, while those are common in most other languages, where they are used as statement terminators. Barely-noticable differences abound, and what is difficult to see for a human can become quite obvious for a neural network.
+The character distributions of these languages are visually similar in terms of general shape. Each has relatively consistent letter frequencies, with letters like e, a, and s occurring more often than other letters, alphabetical characters appearing far more frequently than most punctuation, and spaces universally appearing most frequently of any character. However, looking closely at the data shows some trends upon which our network will ideally learn to base its decisions. Ruby, for example, uses comparatively few parentheses, which is reasonable given that its syntax uses those characters sparingly\footnote{Ruby, among other causes, does not require use of parentheses to call functions. Where most languages follow the convention of \mintinline{python}{function(x)}, Ruby permits use of \mintinline{ruby}{function x} notation.} compared to other languages. Additionally, curled braces (\texttt{\{\}}) dominate languages which use them to delineate code blocks. Python uses almost no semicolons, while those are common in most other languages, where they are used as statement terminators. Barely-noticable differences abound, and what is difficult to see for a human can become quite obvious for a neural network.
 
 Each character in this relevant range is counted within each training example of $1000$ characters. Input neurons recieve a number in the range $[0,1]$ and use this data in forward propogation.
 
@@ -220,7 +220,7 @@ To build our network, we chain together four layers. The first (input) layer, wi
 
 The network contains two hidden layers of size 48 and 24 neurons. These sizes are relatively arbitrary; training would likely still succeed with other hidden layer sizes.
 
-The output layer will contain 10 output neurons, expressing a probability ($[0..1]$) that the code is written in each of the 10 languages.
+The output layer will contain 10 output neurons, expressing a probability $[0,1]$ that the code is written in each of the 10 languages.
 
 \section{Results}
 Though our network's predictions are not flawless, the network structure we propose is able to make predictions with an accuracy between 80 and 90\% depending on the layout of the data provided. To be specific, the network attained an accuracy of 84.00\% after taking roughly 16 seconds to train.
@@ -234,7 +234,7 @@ We can visualize the evolution of our network throughout the training process by
 Random guessing would yield an accuracy around 10\%, so the rate our network was able to attain is relatively impressive.
 
 \subsection{Future questions and improvements}
-The network certainly is far from perfect, and future research is needed to refine the techniques expressed above. Concretely, a few opportunities for improvement are evident.
+The network certainly is far from perfect, and future research is needed to refine the techniques expressed above. Concretely, a few opportunities for improvement are evident:
 \begin{itemize}
   \item{In order to simplify the process of reading data, we concatenate all training samples for each language into one file. This may lead to unpredictable behavior as, for example, the program might gain the impression that code such as
   \begin{minted}{c}
@@ -244,7 +244,7 @@ The network certainly is far from perfect, and future research is needed to refi
 #include <stdio.h>
 // ...
   \end{minted}
-  is normal.\footnote{C/C++'s \texttt{\#include} statement seldom comes anywhere but the beginning of files.} This is not likely to interfere substantially with the identification process. However, the abnormal way in which we group the files is a point worthy of reflection and possible change given that similar techniques to those used here would be useful in modern ``Generative Adversarial Networks,'' which depend on learned features of data to generate }
+  is normal.\footnote{C/C++'s \texttt{\#include} statement seldom comes anywhere but the beginning of files.} This is not likely to interfere substantially with the identification process. However, the abnormal way in which we group the files is a point worthy of reflection and possible change.}
   \item{In order to increase the accuracy of this network implementation as well as its speed, a user may wish to implement a hybrid identification system involving attempts to determine language identity from file extensions, notable keywords, etc., then using the neural network if the less resource-intensive identification strategies fail.}
 \end{itemize}
 
