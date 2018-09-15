@@ -134,9 +134,9 @@ In the context of popular neuroscience (originally in \cite{neuronsfire}), the a
 The essence of backpropogation lies in calculating $\frac{\partial{C}}{\partial{\omega}}$ for each network weight $\omega$ and $\frac{\partial{C}}{\partial{b}}$ for each network bias $b$. We need to know the extent to which shifts in each synapse weight and layer bias affect the final amount of error, so that we can adjust those weights and biases in order to train the network toward better accuracy.
 
 Let us first derive the backpropogation algorithm \cite{derivebackprop}. Given the sigmoid activation function:
-$$\sigma(x)=\frac{1}{1+e^-x}$$
+$$\sigma(x)=\frac{1}{1+e^{-x}}$$
 We can derive:
-$$\sigma'(x)=\frac{e^-x}{(1+e^-x)^2}=\frac{(1+e^-x)-1}{(1+e^-x)^2}=\frac{1+e^-x}{(1+e^-x)^2}-\left(\frac{1}{1+e^-x}\right)^2=\sigma(x)-\sigma(x)^2=\sigma(x)(1-\sigma(x))$$
+$$\sigma'(x)=\frac{e^-x}{(1+e^{-x})^2}=\frac{(1+e^{-x})-1}{(1+e^{-x})^2}=\frac{1+e^{-x}}{(1+e^{-x})^2}-\left(\frac{1}{1+e^{-x}}\right)^2=\sigma(x)-\sigma(x)^2=\sigma(x)(1-\sigma(x))$$
 
 Now, recall that we need to find, for each weight $\omega$, $\frac{\partial{C}}{\partial{\omega}}$. For the sake of simplicity, we will need to split this partial derivative into a series of the same. This expansion requires us to make use of calculus' chain rule.
 $$\frac{\partial{C}}{\partial{\omega}}=\frac{ \partial{C} }{ \partial{\mathcal{O}} }
