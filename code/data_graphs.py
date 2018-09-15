@@ -1,5 +1,7 @@
 import matplotlib
 matplotlib.use('Agg')
+from matplotlib import rcParams
+rcParams['font.family'] = 'serif'
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
 
