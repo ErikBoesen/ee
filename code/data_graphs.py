@@ -7,8 +7,8 @@ TRACK_START = 32
 TRACK_END = 126
 
 NUM_LANGS = 10
-ROWS = 5
-COLS = NUM_LANGS // ROWS
+COLS = 2
+ROWS = NUM_LANGS // COLS
 languages = ['Java', 'C', 'C++', 'Python', 'C-sharp', 'Visual-Basic-.NET',
              'PHP', 'JavaScript', 'Ruby', 'R']
 colors = ['#d34410', '#ff6e00', '#0d94a3', '#084c61', '#050f42',
@@ -26,7 +26,7 @@ for lang_ind in range(NUM_LANGS):
     # Turn rates into rates rather than counts
     rates = [rate / len(text[lang_ind]) for rate in rates]
     print(rates)
-    plt.subplot(2, 5, lang_ind + 1)#, sharex='col', sharey='row')
+    plt.subplot(ROWS, COLS, lang_ind + 1)
     plt.subplots_adjust(top=3, bottom=0.5)
     plt.grid(True)
     plt.title(languages[lang_ind])
@@ -34,12 +34,12 @@ for lang_ind in range(NUM_LANGS):
     plt.ylim(0, 0.07)
     plt.bar(x, rates, color=colors[lang_ind], align='edge')
     plt.bar(x, rates, color=colors[lang_ind], align='center', width=0.3)
-    if lang_ind + 1 > ROWS:
-        plt.xlabel('characters')
+    if lang_ind + 1 > COLS:
+        plt.xlabel('Character')
     #else:
         #plt.xticks([])
-    if lang_ind % ROWS == 0:
-        plt.ylabel('frequency')
+    if lang_ind % COLS == 0:
+        plt.ylabel('Frequency')
     #else:
         #plt.yticks([])
 
