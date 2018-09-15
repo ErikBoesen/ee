@@ -136,7 +136,7 @@ The essence of backpropogation lies in calculating $\frac{\partial{C}}{\partial{
 Let us first derive the backpropogation algorithm \cite{derivebackprop}. Given the sigmoid activation function:
 $$\sigma(x)=\frac{1}{1+e^{-x}}$$
 We can derive:
-$$\sigma'(x)=\frac{e^-x}{(1+e^{-x})^2}=\frac{(1+e^{-x})-1}{(1+e^{-x})^2}=\frac{1+e^{-x}}{(1+e^{-x})^2}-\left(\frac{1}{1+e^{-x}}\right)^2=\sigma(x)-\sigma(x)^2=\sigma(x)(1-\sigma(x))$$
+$$\sigma'(x)=\frac{e^{-x}}{(1+e^{-x})^2}=\frac{(1+e^{-x})-1}{(1+e^{-x})^2}=\frac{1+e^{-x}}{(1+e^{-x})^2}-\left(\frac{1}{1+e^{-x}}\right)^2=\sigma(x)-\sigma(x)^2=\sigma(x)(1-\sigma(x))$$
 
 Now, recall that we need to find, for each weight $\omega$, $\frac{\partial{C}}{\partial{\omega}}$. For the sake of simplicity, we will need to split this partial derivative into a series of the same. This expansion requires us to make use of calculus' chain rule.
 $$\frac{\partial{C}}{\partial{\omega}}=\frac{ \partial{C} }{ \partial{\mathcal{O}} }
