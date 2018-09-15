@@ -208,7 +208,7 @@ Instead, the network generates input vectors by reading in $1000$-character stri
 \begin{center}
     \makebox[\textwidth]{\includegraphics[width=\textwidth]{frequencies}}
 \end{center}
-The character distributions of these languages are visually similar in terms of general shape. Each has relatively consistent letter frequencies, with letters like e, a, and s occurring more often than other letters, alphabetical characters appearing far more frequently than most punctuation, and spaces universally appearing most frequently of any character. However, looking closely at the data shows some trends upon which our network will ideally learn to base its decisions. Ruby, for example, uses comparatively few parentheses, which is reasonable given that its syntax uses those characters sparingly\footnote{Ruby, among other causes, does not require use of parentheses to call functions. Where most languages follow the convention of \mintinline{python}{function(x)}, Ruby permits use of \mintinline{ruby}{function x} notation.} compared to other languages. Additionally, where curled braces (\texttt{\{\}}) dominate languages which use them to delineate code blocks. Python uses almost no semicolons, while those are common in most other languages, where they are used as statement terminators. Barely-noticable differences abound, however, what is difficult to see for a human may be quite obvious for our neural network.
+The character distributions of these languages are visually similar in terms of general shape. Each has relatively consistent letter frequencies, with letters like e, a, and s occurring more often than other letters, alphabetical characters appearing far more frequently than most punctuation, and spaces universally appearing most frequently of any character. However, looking closely at the data shows some trends upon which our network will ideally learn to base its decisions. Ruby, for example, uses comparatively few parentheses, which is reasonable given that its syntax uses those characters sparingly\footnote{Ruby, among other causes, does not require use of parentheses to call functions. Where most languages follow the convention of \mintinline{python}{function(x)}, Ruby permits use of \mintinline{ruby}{function x} notation.} compared to other languages. Additionally, where curled braces (\texttt{\{\}}) dominate languages which use them to delineate code blocks. Python uses almost no semicolons, while those are common in most other languages, where they are used as statement terminators. Barely-noticable differences abound, and what is difficult to see for a human can become quite obvious for a neural network.
 
 Each character in this relevant range is counted within each training example of $1000$ characters. Input neurons recieve a number in the range $[0,1]$ and use this data in forward propogation.
 
@@ -218,8 +218,7 @@ To build our network, we chain together four layers. The first (input) layer, wi
     \includegraphics{asciitable}
 \end{center}
 
-
-The network contains two hidden layers of size 48 and 24 neurons. These sizes are relatively arbitrary; training would likely still succeed with other hidden layer sizes.\todo{Explain this better?}
+The network contains two hidden layers of size 48 and 24 neurons. These sizes are relatively arbitrary; training would likely still succeed with other hidden layer sizes.
 
 The output layer will contain 10 output neurons, expressing a probability ($[0..1]$) that the code is written in each of the 10 languages.
 
@@ -278,7 +277,7 @@ Graphs of network performance were generated with this code:
 
 
 \section{Acknowledgements}
-I would like to thank Mr. William Snyder for serving as the advisor for this Extended Essay. Ms. Jamie Sample was the Extended Essay Coordinator for the GMHS IB students within the Class of 2019. I'd also like to extend my regards to James Weichert for fighting through his essay on a similar topic alongside me and for pointing me toward numerous terrific resources for grasping the mathematical technique behind neural networks. Finally, I'd like to give my most heartfelt gratitude to Stack Overflow, without which I would never have reached the point of attempting a Computer Science EE in the first place.
+I would like to thank Mr. William Snyder for serving as the advisor for this Extended Essay. Ms. Jamie Sample was the Extended Essay Coordinator for the GMHS IB students within the Class of 2019, and I'd like to thank her for tolerating my desire to use the most academic formatting possible in my essay. I'd also like to extend my regards to James Weichert for fighting through his \LaTeX-typeset essay on a similar topic alongside me, and for pointing me toward numerous terrific resources for grasping the mathematical technique behind neural networks. Finally, I'd like to give my most heartfelt gratitude to StackOverflow.com, without which I would never have reached the point of attempting a Computer Science EE in the first place.
 
 \bibliography{research}
 
