@@ -4,7 +4,7 @@ TRACK_START = 32
 TRACK_END = 126
 
 NUM_LANGS = 10
-EPOCHS = 100  # More epochs would be ideal. Visual Basic .NET does not have many solutions on RosettaCode.
+EPOCHS = 100
 N = 1000
 languages = ['Java', 'C', 'C++', 'Python', 'C-sharp', 'Visual-Basic-.NET',
              'PHP', 'JavaScript', 'Ruby', 'R']
@@ -35,7 +35,7 @@ for epoch in range(EPOCHS):
 
 with open('data.csv', 'w', newline='') as f:
     writer = csv.writer(f)
-    # Create header row
+    # This line would create a header row
     #writer.writerow([chr(c) for c in range(TRACK_START, TRACK_END)] + languages)
     for row in data:
         writer.writerow(row)
