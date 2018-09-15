@@ -11,7 +11,7 @@ ROWS = 5
 COLS = NUM_LANGS // ROWS
 languages = ['Java', 'C', 'C++', 'Python', 'C-sharp', 'Visual-Basic-.NET',
              'PHP', 'JavaScript', 'Ruby', 'R']
-colors = ['#050f42', '#084c61', '#0d94a3', '#d34410', '#ff6e00',
+colors = ['#d34410', '#ff6e00', '#0d94a3', '#084c61', '#050f42',
           '#853037', '#ff3d4e', '#d25f6c', '#143d1d', '#387a4a']
 
 text = [open('data/languages/' + language).read() for language in languages]
@@ -36,7 +36,11 @@ for lang_ind in range(NUM_LANGS):
     plt.bar(x, rates, color=colors[lang_ind], align='center', width=0.3)
     if lang_ind + 1 > ROWS:
         plt.xlabel('characters')
+    #else:
+        #plt.xticks([])
     if lang_ind % ROWS == 0:
         plt.ylabel('frequency')
+    #else:
+        #plt.yticks([])
 
 plt.savefig('../images/frequencies.png', bbox_inches='tight')
