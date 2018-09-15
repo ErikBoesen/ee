@@ -7,8 +7,10 @@ TRACK_START = 32
 TRACK_END = 126
 
 NUM_LANGS = 10
-languages = ['Java', 'C', 'C++', 'Python', 'C-sharp', 'Visual-Basic-.NET', 'PHP', 'JavaScript', 'Ruby', 'R']
-colors = ['#050f42', '#084c61', '#0d94a3', '#d34410', '#ff6e00', '#853037', '#ff3d4e', '#d25f6c', '#143d1d', '#387a4a']
+languages = ['Java', 'C', 'C++', 'Python', 'C-sharp', 'Visual-Basic-.NET',
+             'PHP', 'JavaScript', 'Ruby', 'R']
+colors = ['#050f42', '#084c61', '#0d94a3', '#d34410', '#ff6e00',
+          '#853037', '#ff3d4e', '#d25f6c', '#143d1d', '#387a4a']
 
 text = [open('data/languages/' + language).read() for language in languages]
 x = list(range(TRACK_END))

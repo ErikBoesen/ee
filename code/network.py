@@ -15,7 +15,8 @@ TRACK_END = 126
 NUM_LANGS = 10
 TRAINING_EPOCHS = 100
 
-languages = ['Java', 'C', 'C++', 'Python', 'C-sharp', 'Visual-Basic-.NET', 'PHP', 'JavaScript', 'Ruby', 'R']
+languages = ['Java', 'C', 'C++', 'Python', 'C-sharp', 'Visual-Basic-.NET',
+             'PHP', 'JavaScript', 'Ruby', 'R']
 
 input_dim = TRACK_END - TRACK_START;
 
