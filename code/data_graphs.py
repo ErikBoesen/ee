@@ -7,6 +7,8 @@ TRACK_START = 32
 TRACK_END = 126
 
 NUM_LANGS = 10
+ROWS = 5
+COLS = NUM_LANGS // ROWS
 languages = ['Java', 'C', 'C++', 'Python', 'C-sharp', 'Visual-Basic-.NET',
              'PHP', 'JavaScript', 'Ruby', 'R']
 colors = ['#050f42', '#084c61', '#0d94a3', '#d34410', '#ff6e00',
@@ -32,7 +34,9 @@ for lang_ind in range(NUM_LANGS):
     plt.ylim(0, 0.07)
     plt.bar(x, rates, color=colors[lang_ind], align='edge')
     plt.bar(x, rates, color=colors[lang_ind], align='center', width=0.3)
-    plt.xlabel('characters')
-    plt.ylabel('frequency')
+    if lang_ind + 1 > ROWS:
+        plt.xlabel('characters')
+    if lang_ind % ROWS == 0:
+        plt.ylabel('frequency')
 
 plt.savefig('../images/frequencies.png', bbox_inches='tight')
