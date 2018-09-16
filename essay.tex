@@ -122,18 +122,18 @@ net/.style={matrix of nodes, nodes={draw, circle, inner sep=8pt}, nodes in empty
 \end{tikzpicture}
 \end{center}
 
-\subsection{Backpropogation}
-A central component of neural network training is the process of backpropogation. In very general terms, backpropogation is the process of determining the error of the network, or the difference between output the network delivers and desired output, and subsequently going backward through the network and adjusting neuron weights and biases accordingly.
+\subsection{Backpropagation}
+A central component of neural network training is the process of backpropagation. In very general terms, backpropagation is the process of determining the error of the network, or the difference between output the network delivers and desired output, and subsequently going backward through the network and adjusting neuron weights and biases accordingly.
 
 To calculate error for an individual output neuron, we need only find the squared difference between the neuron output $\omega_n$ and the known target value $t_n$.
 $$E_n=(t_n-\mathcal{O}_n)^2$$
 For networks with multiple output neurons, we can expand this function to find the total error of the network during one epoch (training iteration) as follows. This equation is frequently referred to as the ``cost function'' \cite{mediummlbasics}.
 $$C=\frac{1}{2}\sum_n(t_n-\mathcal{O}_n)^2$$
-In the context of popular neuroscience (originally in \cite{neuronsfire}), the adage that ``neurons which fire together, wire together'' is frequently repeated. This concept persists in artificial neural networks as well as natural. Through backpropogation we can determine which weights and biases to increase or decrease and to what extent to do so. Then, we can recursively adjust weights proportionally to their influence on output so as to achieve a more accurate result.
+In the context of popular neuroscience (originally in \cite{neuronsfire}), the adage that ``neurons which fire together, wire together'' is frequently repeated. This concept persists in artificial neural networks as well as natural. Through backpropagation we can determine which weights and biases to increase or decrease and to what extent to do so. Then, we can recursively adjust weights proportionally to their influence on output so as to achieve a more accurate result.
 
-The essence of backpropogation lies in calculating $\frac{\partial{C}}{\partial{\omega}}$ for each network weight $\omega$ and $\frac{\partial{C}}{\partial{b}}$ for each network bias $b$. We need to know the extent to which shifts in each synapse weight and layer bias affect the final amount of error, so that we can adjust those weights and biases in order to train the network toward better accuracy.
+The essence of backpropagation lies in calculating $\frac{\partial{C}}{\partial{\omega}}$ for each network weight $\omega$ and $\frac{\partial{C}}{\partial{b}}$ for each network bias $b$. We need to know the extent to which shifts in each synapse weight and layer bias affect the final amount of error, so that we can adjust those weights and biases in order to train the network toward better accuracy.
 
-Let us first derive the backpropogation algorithm \cite{derivebackprop}. Given the sigmoid activation function:
+Let us first derive the backpropagation algorithm \cite{derivebackprop}. Given the sigmoid activation function:
 $$\sigma(x)=\frac{1}{1+e^{-x}}$$
 We can derive:
 $$\sigma'(x)=\frac{e^{-x}}{(1+e^{-x})^2}=\frac{(1+e^{-x})-1}{(1+e^{-x})^2}=\frac{1+e^{-x}}{(1+e^{-x})^2}-\left(\frac{1}{1+e^{-x}}\right)^2=\sigma(x)-\sigma(x)^2=\sigma(x)(1-\sigma(x))$$
@@ -162,7 +162,7 @@ $$\frac{\partial{z}}{\partial{b}}(\omega\mathcal{O}_h+b)=1$$
 $$\frac{\partial{C}}{\partial{b}}=\sigma(z)(1-\sigma(z))\mathcal{O}_h$$
 
 \todo{Outline how gradient descent does its job.}
-During backpropogation, these derivatives can be used in the ``gradient descent algorithm'' to move downhill in $n$ dimensions toward a local minimum of the cost function, bringing the network closer to correctness.
+During backpropagation, these derivatives can be used in the ``gradient descent algorithm'' to move downhill in $n$ dimensions toward a local minimum of the cost function, bringing the network closer to correctness.
 
 \section{Programming Language Identification}
 \subsection{Motivations}
@@ -263,7 +263,7 @@ We used a simple Python script, \texttt{data\_reader.py}, to read raw text input
 
 \label{sec:appendix_b}
 \subsection{Appendix B: Network Code}
-All code for reading training data and performing training, backpropogation, and testing can be found in a file \texttt{network.py}.
+All code for reading training data and performing training, backpropagation, and testing can be found in a file \texttt{network.py}.
 \inputminted{python}{code/network.py}
 
 All experimentation code was run on a desktop PC with 8GB RAM, an Intel Core i5-4460 3.20GHz CPU, and Arch Linux x86\_64.
