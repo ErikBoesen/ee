@@ -236,18 +236,9 @@ Random guessing would yield an accuracy around 10\%, so the rate our network was
 \subsection{Future questions and improvements}
 The network certainly is far from perfect, and future research is needed to refine the techniques expressed above. Concretely, a few opportunities for improvement are evident:
 \begin{itemize}
-  \item{In order to simplify the process of reading data, we concatenate all training samples for each language into one file. This may lead to unpredictable behavior as, for example, the program might gain the impression that code such as
-  \begin{minted}{c}
-// ...
-    return 0;
-}
-#include <stdio.h>
-// ...
-  \end{minted}
-  is normal.\footnote{C/C++'s \texttt{\#include} statement seldom comes anywhere but the beginning of files.} This is not likely to interfere substantially with the identification process. However, the abnormal way in which we group the files is a point worthy of reflection and possible change.}
+    \item{In order to simplify the process of reading data, we concatenate all training samples for each language into one file, which is read in blocks of fixed length. This prevents the network from taking advantage of clear language indicators which would typically reside only at the start of a file. When lines between different files are blurred, we lose the ability to perform preliminary checks of language such as reading the interpreter path at the starting of an interpreted script. Future revisions could take into account the fact that code typically does not come in the form of 1000-character blocks.}
   \item{In order to increase the accuracy of this network implementation as well as its speed, a user may wish to implement a hybrid identification system involving attempts to determine language identity from file extensions, notable keywords, etc., then using the neural network if the less resource-intensive identification strategies fail.}
 \end{itemize}
-
 
 \section{Appendices}
 
