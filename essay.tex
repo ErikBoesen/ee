@@ -10,10 +10,6 @@
 \usepackage{minted}
 \usemintedstyle{colorful}
 
-\usepackage{titling}
-\renewcommand\maketitlehooka{\null\mbox{}\vfill}
-\renewcommand\maketitlehookd{\vfill\null}
-
 \usepackage{graphicx}
 \graphicspath{{./images/}}
 
@@ -31,15 +27,14 @@
 \title{To What Extent Can Deep Neural Networks Differentiate Between Programming Languages Without Knowledge of File Metadata?}
 \author{Erik Boesen, Candidate gsg256}
 
-\begin{titlingpage}
 \maketitle
 
 \begin{abstract}
     The notion of ``artificial intelligence'' evokes in the public mind a variety of reactions, ranging from enthusiasm at the promise of self-driving cars to guttral fear of robotic villians from 1980s films. While the field may be moving toward lofty goals of autonomous vehicles and numerous public intellectuals have warned of the dangers of general-purpose AI, applications of the technology are and have long been present throughout society. Hardly can one go through the day without monitoring of physical location, web traffic, and social interactions to produce targeted advertising. When taking a plane flight, passengers rest safely in the hands of an artificially intelligent autopilot, enjoying the benefit of a trip automatically scheduled to ensure full seats. Perhaps they drove to the airport, assisted by a mobile map application which assessed traffic conditions, highway tolls, road closures, and a host of other variables in order to make a decision on the optimal route. Artificial intelligence is already here, and is a topic of substantial academic discussion. Within the field is found the broad set of techniques known as ``machine learning,'' where models are trained from sample data to find patterns and learn to perform a task without direct human input. One popular technique of machine learning, the ``neural network,'' is distinguished in that it attempts to simulate the decision-making style of a biological brain in order to adapt and learn much like a human. The field of natural language processing relies heavily on neural networks. However, little research has been done on how neural networks may aid in \textit{artificial} language processing, i.e. that of programming languages. Here, we explore the extent to which neural networks can be applied to differentiating between 10 different programming languages. We outline the fundamentals of neural network technology, and implement a network which correctly determines the language of code in 84\% of trials.
 \end{abstract}
-\end{titlingpage}
 
 \tableofcontents
+\pagebreak
 
 \section{Introduction}
 In this research we examine the the popular machine learning technique of neural networking, specifically within the area of deep learning. In order to illustrate this technology, we outline and implement a neural network which learns to differentiate between the world's 10 most commonly used programming languages.\footnote{According to the TIOBE Index \cite{tiobe}, a popular index tracking the prevalence of programming languages as measured by search engine queries. The top 10 languages according to the May 2018 iteration of the Index are Java, C, C++, Python, C\#, Visual Basic .NET, PHP, JavaScript, SQL, and Ruby. However, our repository of training data, RosettaCode, has a limited amount of SQL code available. In order to balance the training process out, we have exchanged SQL for R, which comes in at \#11 on the TIOBE index.} The learning techniques used are generalizable to any selection of languages, as the neural network we design can be trained with any inputs and has no intrinsic understanding of specific syntactic features of any language. In order to perform identification, the network will be fed data on individual blocks of code, and will gradually adjust its weights and biases in order to ``learn'' the attributes of each language without being explicitly instructed. Having learned to distinguish between languages, it will be able to perform this task without further feedback, exhibiting well the manner in which computers are able to be trained through Machine Learning techniques.
