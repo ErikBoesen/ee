@@ -37,12 +37,8 @@ for lang_ind in range(NUM_LANGS):
     plt.bar(x, rates, color=colors[lang_ind], align='center', width=1.0)
     if lang_ind + 2 >= NUM_LANGS:
         plt.xlabel('Character')
-    #else:
-        #plt.xticks([])
     if lang_ind % COLS == 0:
         plt.ylabel('Frequency')
-    #else:
-        #plt.yticks([])
     plt.tight_layout()
 
 plt.savefig('../images/frequencies.png', bbox_inches='tight')

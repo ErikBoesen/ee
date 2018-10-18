@@ -4,8 +4,6 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 import json
 
-
-# fix random seed for reproducibility
 seed = 7
 np.random.seed(seed)
 
@@ -31,7 +29,7 @@ print(Y)
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=seed)
 
 model = Sequential()
-# Significantly higher success when using RELU than sigmoid.
+# Significantly higher success when using ReLU as activation function than sigmoid.
 model.add(Dense(48, input_dim=input_dim, activation='relu'))
 model.add(Dense(24, activation='relu'))
 model.add(Dense(NUM_LANGS, activation='sigmoid'))
