@@ -212,9 +212,10 @@ Such an outcome is difficult to avoid when separating by $n$-grams. Short of art
 
 Instead, the network generates input vectors by reading in $1000$-character strings of code, and, rather than directly passing in character values, calculates character frequency relative to the total number of counted characters. Ideally, the network will recognize the relative unimportance of those characters irrelevant to the identity of a piece of code, such as alphanumeric characters, while relying more on indicators like semicolons or brackets. To illustrate, examine the distribution of characters within our 10 languages. Characters are graphed according to the following ASCII numerals:
 
+\begin{center}
 \begin{tabular}{ c | c }
   \hline
-\thead{ID} & \thead{Char.} \\
+\thead{ID} & \thead{Ch.} \\
 32 & \verb   \\
 33 & \verb ! \\
 34 & \verb " \\
@@ -322,6 +323,7 @@ Instead, the network generates input vectors by reading in $1000$-character stri
 126 & \verb ~ \\
   \hline
 \end{tabular}
+\end{center{
 
 \begin{center}
     \includegraphics{asciitable}
