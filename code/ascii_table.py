@@ -5,4 +5,4 @@ def escape(c: chr) :
 
 
 for x in range(32,127):
-    print("%d & %s \\\\" % (x, escape(chr(x))))
+    print("%d & \\verb %c \\\\" % (x, chr(x)))
