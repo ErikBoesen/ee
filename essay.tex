@@ -214,7 +214,7 @@ Instead, the network generates input vectors by reading in $1000$-character stri
 \end{center}
 
 \begin{center}
-    \makebox[\textwidth]{\includegraphics[width=\textwidth]{frequencies}}
+    \makebox[\textwidth]{\includegraphics[width=6in]{frequencies}}
 \end{center}
 The character distributions of these languages are visually similar in terms of general shape. Each has relatively consistent letter frequencies, with letters like e, a, and s occurring more often than other letters, alphabetical characters appearing far more frequently than most punctuation, and spaces universally appearing most frequently of any character. However, looking closely at the data shows some trends upon which our network will ideally learn to base its decisions. Ruby, for example, uses comparatively few parentheses, which is reasonable given that its syntax uses those characters sparingly\footnote{Ruby, among other causes, does not require use of parentheses to call functions. Where most languages follow the convention of \mintinline{python}{function(x)}, Ruby permits use of \mintinline{ruby}{function x} notation.} compared to other languages. Additionally, curled braces (\texttt{\{\}}) dominate languages which use them to delineate code blocks. Python uses almost no semicolons, while those are common in most other languages, where they are used as statement terminators. Barely-noticeable differences abound, and what is difficult to see for a human can become quite obvious for a neural network.
 
@@ -232,10 +232,10 @@ Though our network's predictions are not flawless, the network structure we prop
 We can visualize the evolution of our network throughout the training process by looking to its accuracy and loss (cost function output) during the training process:
 
 \begin{center}
-    \includegraphics{history}
+    \includegraphics[width=5in]{history}
 \end{center}
 
-Random guessing would yield an accuracy around 10\%, so the rate our network was able to attain is relatively impressive.
+As one would expect, during training the network gradually improves as it learns through backpropagation how to perform language recognition. Similarly, the loss function decreases as the network starts to require less adjustment: when accuracy improves, the network will need less adjustment, and the cost function will decrease. Random guessing would yield an accuracy around 10\%, so the 85\% success rate our network was able to attain is relatively impressive.
 
 \subsection{Future questions and improvements}
 The network certainly is far from perfect, and future research is needed to refine the techniques expressed above. Concretely, a few opportunities for improvement are evident:
