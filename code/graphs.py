@@ -1,6 +1,9 @@
 import json
 import matplotlib
 matplotlib.use('Agg')
+from matplotlib import rcParams
+rcParams['font.family'] = 'monospace'
+rcParams['font.monospace'] = ['Source Code Pro']
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
 with open('history.json') as f:
