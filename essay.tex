@@ -214,8 +214,8 @@ Instead, the network generates input vectors by reading in $1000$-character stri
 
 \begin{center}
 \begin{tabular}{ c | c }
-  \hline
 \thead{ID} & \thead{Ch.} \\
+  \hline
 32 & \verb   \\
 33 & \verb ! \\
 34 & \verb " \\
@@ -323,11 +323,9 @@ Instead, the network generates input vectors by reading in $1000$-character stri
 126 & \verb ~ \\
   \hline
 \end{tabular}
-\end{center{
-
-\begin{center}
-    \includegraphics{asciitable}
 \end{center}
+
+Characters before point 32 (Space) are used for various technical purposes rather than as actual characters, and are therefore not useful for identification of language. The range $[32,126]$ contains punctuation, Arabic digits, and both uppercase and lowercase letters. While characters outside this range may appear in code from time to time, they are unlikely to be significant to the identity of a code document, and as such can safely be ignored.
 
 \begin{center}
     \makebox[\textwidth]{\includegraphics[width=6in]{frequencies}}
@@ -336,7 +334,7 @@ The character distributions of these languages are visually similar in terms of 
 
 Each character in this relevant range is counted within each training example of $1000$ characters. Input neurons receive a number in the range $[0,1]$ and use this data in forward propagation.
 
-To build our network, we chain together four layers. The first (input) layer, will contain 94 total neurons. This number is based off the range of ASCII characters we wish our to regard in making its decisions \cite{asciitable}. As visible in the table above, characters before point 32 (Space) are used for various technical purposes rather than as actual characters, and are therefore not useful for identification of language. Range $[32,126]$ contains punctuation, Western Arabic digits, and both uppercase and lowercase letters. While characters outside this range may appear in code from time to time, they are unlikely to be significant to the identity of a code document, and as such can safely be ignored.
+To build our network, we chain together four layers. The first (input) layer, will contain 94 total neurons: one for the frequency of each character we monitor.
 
 The network contains two hidden layers of size 48 and 24 neurons. These sizes are relatively arbitrary; training would likely still succeed with other hidden layer sizes.
 
